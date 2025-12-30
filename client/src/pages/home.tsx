@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Marquee from "@/components/ui/marquee";
 import { Link } from "wouter";
-import { ArrowRight, Code2, Brain, Zap } from "lucide-react";
+import { ArrowRight, Code2, Brain, Zap, Users, BookOpen, Sparkles } from "lucide-react";
 import abstractImage from "@assets/generated_images/abstract_3d_geometric_shape_pop_art_style.png";
 import abstractImage2 from "@assets/generated_images/abstract_3d_geometric_shape_pop_art_style_variant.png";
 
@@ -10,17 +10,53 @@ export default function Home() {
     {
       icon: Code2,
       title: "Build",
-      description: "Code, solve, and ship real projects that matter"
+      description: "Code, solve, and ship real projects that matter. From web apps to algorithms, create with purpose."
     },
     {
       icon: Brain,
       title: "Think",
-      description: "Dive deep into algorithms, math, and systems thinking"
+      description: "Dive deep into algorithms, math, and systems thinking. Understand the why behind the what."
     },
     {
       icon: Zap,
       title: "Connect",
-      description: "Network with ambitious peers and industry professionals"
+      description: "Network with ambitious peers and industry professionals. Grow together, learn faster."
+    }
+  ];
+
+  const highlights = [
+    {
+      icon: BookOpen,
+      title: "Knowledge Library",
+      description: "6+ structured learning paths covering web, algorithms, math, and tools"
+    },
+    {
+      icon: Users,
+      title: "Active Community",
+      description: "150+ members collaborating on projects and tackling challenges"
+    },
+    {
+      icon: Sparkles,
+      title: "Monthly Events",
+      description: "Workshops, hackathons, talks, and social hangouts for all levels"
+    }
+  ];
+
+  const testimonials = [
+    {
+      text: "InfoM4th helped me transition from pure math to full-stack development. The library is incredible.",
+      author: "Alex T.",
+      role: "2nd Year CS Major"
+    },
+    {
+      text: "The workshop quality is insane. You won't find this level of depth in a regular club.",
+      author: "Jordan M.",
+      role: "1st Year CS & Math Double Major"
+    },
+    {
+      text: "Finally a space where I could ask deep theoretical questions AND ship code.",
+      author: "Casey S.",
+      role: "3rd Year Mathematics Major"
     }
   ];
 
@@ -88,9 +124,9 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="mt-8 text-lg md:text-2xl max-w-3xl mx-auto font-medium"
+            className="mt-8 text-lg md:text-2xl max-w-3xl mx-auto font-medium leading-relaxed"
           >
-            A community for Computer Science and Mathematics students building, learning, and solving problems that matter.
+            A community for Computer Science and Mathematics students <span className="font-bold">building, learning, and solving</span> problems that matter.
           </motion.p>
 
           <motion.div
@@ -141,6 +177,62 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Highlights Grid */}
+      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-32">
+        <h2 className="text-6xl md:text-7xl font-display font-black uppercase mb-12 border-b-4 border-black pb-4">
+          Why Join?
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {highlights.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-secondary border-4 border-black p-8 neo-shadow hover:neo-shadow-hover group"
+              >
+                <Icon size={40} className="mb-4 group-hover:text-primary transition-colors" />
+                <h3 className="text-2xl font-display font-bold uppercase mb-3 group-hover:text-primary transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-lg opacity-90">{item.description}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-32">
+        <h2 className="text-6xl md:text-7xl font-display font-black uppercase mb-12 text-center">What Members Say</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="border-4 border-black bg-white p-8 neo-shadow"
+            >
+              <div className="text-5xl text-primary font-display mb-4">"</div>
+              <p className="text-xl font-medium mb-6 leading-relaxed italic">
+                {testimonial.text}
+              </p>
+              <div className="border-t-2 border-black pt-4">
+                <p className="font-display font-bold text-lg">{testimonial.author}</p>
+                <p className="text-sm opacity-60">{testimonial.role}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Call Out Section */}
       <section className="bg-primary text-white py-24 px-6 relative overflow-hidden">
         <div className="max-w-5xl mx-auto text-center relative z-10">
@@ -159,6 +251,24 @@ export default function Home() {
             Browse Library
           </Link>
         </div>
+      </section>
+
+      {/* Events CTA */}
+      <section className="px-6 md:px-12 max-w-7xl mx-auto py-20">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="bg-accent border-4 border-black p-12 md:p-16 neo-shadow-lg"
+        >
+          <h2 className="text-5xl md:text-6xl font-display font-black uppercase mb-6 text-white">Upcoming Events</h2>
+          <p className="text-xl text-white opacity-90 mb-8 max-w-2xl">
+            From algorithm sprints to industry talks and hackathons. Check out our event calendar and join us!
+          </p>
+          <Link href="/events" className="inline-flex items-center gap-3 px-8 py-4 bg-white text-accent font-bold uppercase border-2 border-white hover:bg-transparent hover:text-white transition-all neo-shadow hover:neo-shadow-hover cursor-pointer">
+            View Events <ArrowRight size={24} />
+          </Link>
+        </motion.div>
       </section>
     </div>
   );
