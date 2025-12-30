@@ -117,7 +117,8 @@ export default function Home() {
           >
             Where Code
             <br />
-            <span className="text-stroke">Meets Thinking</span>
+            <span className="text-stroke hover:text-primary transition-colors cursor-pointer">Meets</span>{" "}
+            <span className="text-stroke hover:text-primary transition-colors cursor-pointer">Thinking</span>
           </motion.h1>
           
           <motion.p 
