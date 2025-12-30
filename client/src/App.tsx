@@ -6,7 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import About from "@/pages/about";
-import Contact from "@/pages/contact";
+import Library from "@/pages/library";
+import Team from "@/pages/team";
+import Join from "@/pages/join";
 import Navbar from "@/components/ui/navbar";
 import CustomCursor from "@/components/ui/custom-cursor";
 
@@ -15,7 +17,9 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
+      <Route path="/library" component={Library} />
+      <Route path="/team" component={Team} />
+      <Route path="/join" component={Join} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,0 +1,240 @@
+Evolve the Existing Site into the InfoM4th Website + Knowledge Library
+
+⚠️ CRITICAL INSTRUCTION
+This is a continuation, not a reset.
+Do not discard existing layouts, motion systems, typography decisions, or interaction patterns.
+Build on top of what exists.
+
+🧠 CONTEXT
+
+This website was originally built to explore the upper limits of creative web design:
+
+bold
+
+expressive
+
+interaction-first
+
+studio-level quality
+
+Now, evolve it into the official website of InfoM4th (InfoMath Club) — a Computer Science & Mathematics student club with an exclusive internal knowledge library.
+
+Think:
+
+creative studio × engineering mindset × academic ambition
+
+🎯 NEW OBJECTIVE
+
+Transform the site into a high-impact, modern, and memorable InfoM4th website that:
+
+attracts ambitious students
+
+communicates intellectual depth
+
+offers exclusive learning resources
+
+remains playful, alive, and premium
+
+This should not feel like a typical university club website or LMS.
+
+🧬 EVOLVED DESIGN DIRECTION
+
+Retain:
+
+bold, expressive visuals
+
+confident typography
+
+rich motion and micro-interactions
+
+Evolve toward:
+
+intentional restraint
+
+meaningful interaction
+
+a balance between playfulness and rigor
+
+Visual inspiration:
+
+creative tech studios
+
+research labs
+
+modern dev tools
+
+algorithmic & modular systems
+
+🧱 CONTENT ADAPTATION (KEEP STRUCTURE, CHANGE MEANING)
+1️⃣ Hero / Entry Experience
+
+Purpose: Immediate identity
+
+Messaging such as:
+
+“Where Code Meets Thinking.”
+
+“Computer Science & Mathematics, Built Together.”
+
+Motion should suggest:
+
+exploration
+
+connection
+
+intellectual momentum
+
+2️⃣ About InfoM4th
+
+Narrative-driven explanation:
+
+why the club exists
+
+why CS + Math together
+
+learning by building, solving, and questioning
+
+Avoid generic academic wording.
+
+3️⃣ Activities
+
+Present activities as learning systems, not lists:
+
+Workshops → practice → outcomes
+
+Coding & problem-solving sessions
+
+Projects & challenges
+
+Tech talks & career sessions
+
+Each activity has:
+
+a purpose
+
+a visual identity
+
+subtle interaction feedback
+
+4️⃣ Events
+
+Interactive timeline or list
+
+Emphasize learning outcomes, not just dates
+
+5️⃣ Library (NEW — VERY IMPORTANT)
+
+Create a Library page that acts as InfoM4th’s exclusive knowledge vault.
+
+Purpose:
+
+Centralize trainings, courses, and internal resources
+
+Make learning feel curated, intentional, and premium
+
+Reinforce the club’s intellectual identity
+
+Content may include:
+
+Internal training programs
+
+Workshop recordings or materials
+
+Structured learning paths (e.g. Web, Algorithms, Git, etc.)
+
+PDFs, links, or modules
+
+“Members-only” style content (even if access control is conceptual)
+
+Design requirements:
+
+Not a basic LMS layout
+
+Modular, card-based, or system-driven presentation
+
+Strong hierarchy and clarity
+
+Subtle motion to indicate progress, depth, or discovery
+
+Tone:
+
+serious
+
+academic-inspired
+
+modern and accessible
+
+This page should feel like:
+
+a private lab notebook, not a downloads page
+
+6️⃣ Team
+
+Clear, professional presentation
+
+Human, respectful, minimal
+
+No exaggerated titles
+
+7️⃣ Join InfoM4th
+
+Strong call to action
+
+Encourage beginners without lowering standards
+
+Make joining feel like entering a focused, ambitious environment
+
+🎥 MOTION & INTERACTION (NON-NEGOTIABLE)
+
+Motion must:
+
+reinforce meaning
+
+guide attention
+
+signal state changes
+
+Avoid:
+
+decorative animations
+
+pointless transitions
+
+Use:
+
+hover feedback
+
+entrance transitions
+
+subtle parallax
+
+interactive typography where appropriate
+
+Everything should feel responsive and alive.
+
+🧩 ARCHITECTURE & FUTURE-PROOFING
+
+Clean, scalable component structure
+
+Reusable systems
+
+Easy yearly content updates
+
+Assume future club members will maintain and extend this site
+
+✅ FINAL QUALITY BAR
+
+Before finishing, ensure:
+
+The site feels designed, not assembled
+
+Creativity supports intellect, not noise
+
+The Library feels exclusive, valuable, and intentional
+
+A CS student thinks:
+
+“This club is serious… and I want access.”
+
+Do not optimize for speed.
+Optimize for craft, coherence, and impact.

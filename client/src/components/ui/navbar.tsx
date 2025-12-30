@@ -8,27 +8,28 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: "Work", path: "/" },
+    { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
+    { name: "Library", path: "/library" },
+    { name: "Team", path: "/team" },
   ];
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference text-white">
       <Link href="/" className="text-2xl font-display font-bold tracking-tighter hover-trigger cursor-pointer">
-        NEO<span className="text-primary">BRUTAL</span>
+        INFO<span className="text-primary">M4TH</span>
       </Link>
 
       {/* Desktop Nav */}
       <div className="hidden md:flex gap-8 items-center">
         {navItems.map((item) => (
-          <Link key={item.path} href={item.path} className={`text-lg font-medium hover-trigger relative group cursor-pointer ${location === item.path ? 'text-primary' : ''}`}>
+          <Link key={item.path} href={item.path} className={`text-lg font-medium hover-trigger relative group cursor-pointer ${location === item.path ? 'text-primary font-bold' : ''}`}>
             {item.name}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
           </Link>
         ))}
-        <Link href="/contact" className="px-6 py-2 bg-white text-black font-bold border-2 border-transparent hover:border-white hover:bg-black hover:text-white transition-all neo-shadow hover:neo-shadow-hover hover-trigger cursor-pointer">
-          Let's Talk
+        <Link href="/join" className="px-6 py-2 bg-primary text-white font-bold border-2 border-transparent hover:border-white hover:bg-white hover:text-primary transition-all neo-shadow hover:neo-shadow-hover hover-trigger cursor-pointer">
+          Join
         </Link>
       </div>
 
@@ -52,12 +53,19 @@ export default function Navbar() {
             <Link 
               key={item.path} 
               href={item.path}
-              className="text-4xl font-display font-bold uppercase hover:text-primary transition-colors cursor-pointer"
+              className="text-3xl font-display font-bold uppercase hover:text-primary transition-colors cursor-pointer"
               onClick={() => setIsOpen(false)}
             >
               {item.name}
             </Link>
           ))}
+          <Link 
+            href="/join"
+            className="text-3xl font-display font-bold uppercase hover:text-primary transition-colors cursor-pointer"
+            onClick={() => setIsOpen(false)}
+          >
+            Join
+          </Link>
         </motion.div>
       )}
     </nav>
