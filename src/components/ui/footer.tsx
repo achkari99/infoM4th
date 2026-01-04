@@ -14,6 +14,7 @@ export default function Footer() {
         { label: "Home", href: "/" },
         { label: "About", href: "/about" },
         { label: "Events", href: "/events" },
+        { label: "News", href: "/news" },
         { label: "Library", href: "/library" },
       ]
     },
