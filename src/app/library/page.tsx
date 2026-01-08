@@ -1,122 +1,80 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Lock, Code2, Calculator, GitBranch, Zap, Star, Users, BarChart3 } from "lucide-react";
+import { supabase } from "@/lib/supabaseClient";
 
 interface LearningPath {
   id: string;
   title: string;
   category: string;
-  icon: React.ReactNode;
   description: string;
   modules: number;
   difficulty: "Beginner" | "Intermediate" | "Advanced";
-  color: string;
-  instructors?: number;
-  rating?: number;
-  students?: number;
+  instructors: number | null;
+  rating: number | null;
+  students: number | null;
 }
 
-const libraryContent: LearningPath[] = [
-  {
-    id: "web-fundamentals",
-    title: "Web Development Fundamentals",
-    category: "Web",
-    icon: <Code2 size={32} />,
-    description: "HTML, CSS, JavaScript. Building blocks of the web. Learn the fundamentals with modern practices.",
-    modules: 12,
-    difficulty: "Beginner",
-    color: "bg-blue-100 border-blue-400 hover:bg-blue-200",
-    instructors: 2,
-    rating: 4.8,
-    students: 45
-  },
-  {
-    id: "algorithms-datastructures",
-    title: "Algorithms & Data Structures",
-    category: "Core CS",
-    icon: <Zap size={32} />,
-    description: "Master sorting, searching, trees, graphs, and algorithmic thinking. The foundation of great engineering.",
-    modules: 15,
-    difficulty: "Intermediate",
-    color: "bg-purple-100 border-purple-400 hover:bg-purple-200",
-    instructors: 3,
-    rating: 4.9,
-    students: 67
-  },
-  {
-    id: "discrete-math",
-    title: "Discrete Mathematics",
-    category: "Math",
-    icon: <Calculator size={32} />,
-    description: "Logic, sets, combinatorics, and graph theory. Essential for computer science.",
-    modules: 10,
-    difficulty: "Intermediate",
-    color: "bg-green-100 border-green-400 hover:bg-green-200",
-    instructors: 2,
-    rating: 4.7,
-    students: 38
-  },
-  {
-    id: "git-version-control",
-    title: "Git & Version Control",
-    category: "Tools",
-    icon: <GitBranch size={32} />,
-    description: "Collaborate effectively. Learn branching, merging, rebasing, and workflow best practices.",
-    modules: 8,
-    difficulty: "Beginner",
-    color: "bg-orange-100 border-orange-400 hover:bg-orange-200",
-    instructors: 1,
-    rating: 4.6,
-    students: 82
-  },
-  {
-    id: "linear-algebra",
-    title: "Linear Algebra Essentials",
-    category: "Math",
-    icon: <Calculator size={32} />,
-    description: "Vectors, matrices, eigenvectors. Critical for ML, graphics, and scientific computing.",
-    modules: 12,
-    difficulty: "Intermediate",
-    color: "bg-pink-100 border-pink-400 hover:bg-pink-200",
-    instructors: 2,
-    rating: 4.8,
-    students: 41
-  },
-  {
-    id: "advanced-react",
-    title: "Advanced React Patterns",
-    category: "Web",
-    icon: <Code2 size={32} />,
-    description: "Hooks, context, state management, performance optimization. Ship production-grade applications.",
-    modules: 14,
-    difficulty: "Advanced",
-    color: "bg-cyan-100 border-cyan-400 hover:bg-cyan-200",
-    instructors: 3,
-    rating: 4.9,
-    students: 33
-  }
-];
+const categoryIconMap: Record<string, JSX.Element> = {
+  Web: <Code2 size={32} />,
+  "Core CS": <Zap size={32} />,
+  Math: <Calculator size={32} />,
+  Tools: <GitBranch size={32} />,
+  Default: <BookOpen size={32} />,
+};
 
 export default function Library() {
+  const [paths, setPaths] = useState<LearningPath[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadPaths = async () => {
+      setIsLoading(true);
+      setError(null);
+
+      const { data, error: fetchError } = await supabase
+        .from("library_paths")
+        .select("*")
+        .is("archived_at", null)
+        .order("title", { ascending: true });
+
+      if (fetchError) {
+        setError(fetchError.message);
+        setIsLoading(false);
+        return;
+      }
+
+      setPaths((data as LearningPath[]) ?? []);
+      setIsLoading(false);
+    };
+
+    loadPaths();
+  }, []);
+
   const difficultyColor = {
     Beginner: "bg-green-500",
     Intermediate: "bg-yellow-500",
-    Advanced: "bg-red-500"
+    Advanced: "bg-red-500",
   };
 
-  const totalStats = {
-    paths: libraryContent.length,
-    modules: libraryContent.reduce((acc, p) => acc + p.modules, 0),
-    students: libraryContent.reduce((acc, p) => acc + (p.students || 0), 0),
-    hours: 100
-  };
+  const totalStats = useMemo(
+    () => ({
+      paths: paths.length,
+      modules: paths.reduce((acc, p) => acc + p.modules, 0),
+      students: paths.reduce((acc, p) => acc + (p.students || 0), 0),
+      hours: 100,
+    }),
+    [paths],
+  );
 
   return (
     <div className="min-h-screen bg-background pt-32 px-6 pb-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-16"
@@ -125,15 +83,22 @@ export default function Library() {
             <div className="p-4 bg-primary border-2 border-black">
               <BookOpen size={40} className="text-white" />
             </div>
-            <h1 className="text-7xl md:text-8xl font-display font-black uppercase leading-none">Knowledge<br/>Vault</h1>
+            <h1 className="text-7xl md:text-8xl font-display font-black uppercase leading-none">
+              Knowledge<br />Vault
+            </h1>
           </div>
           <p className="text-2xl max-w-2xl mt-6">
-            Exclusive learning paths built by InfoM4th members. Curated, structured, and designed for depth. All free for members.
+            Exclusive learning paths built by InfoM4th members. Curated, structured, and designed for depth. All free for
+            members.
           </p>
         </motion.div>
 
+        {error && (
+          <div className="border-4 border-black bg-white p-6 neo-shadow mb-10 text-lg">{error}</div>
+        )}
+
         {/* Stats Bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -143,12 +108,12 @@ export default function Library() {
             { icon: BookOpen, value: totalStats.paths, label: "Learning Paths" },
             { icon: BarChart3, value: totalStats.modules, label: "Modules" },
             { icon: Users, value: totalStats.students, label: "Learners" },
-            { icon: Star, value: `${totalStats.hours}+`, label: "Hours" }
+            { icon: Star, value: `${totalStats.hours}+`, label: "Hours" },
           ].map((stat, i) => {
             const Icon = stat.icon;
             return (
               <motion.div
-                key={i}
+                key={stat.label}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + i * 0.05 }}
@@ -163,7 +128,7 @@ export default function Library() {
         </motion.div>
 
         {/* Filter/Info Bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
@@ -171,9 +136,7 @@ export default function Library() {
         >
           <div>
             <p className="font-mono uppercase text-sm opacity-80">Members-Only Content</p>
-            <p className="text-xl font-bold">
-              {libraryContent.length} Learning Paths Available
-            </p>
+            <p className="text-xl font-bold">{paths.length} Learning Paths Available</p>
           </div>
           <div className="flex gap-3">
             {Object.entries(difficultyColor).map(([level, color]) => (
@@ -186,65 +149,69 @@ export default function Library() {
         </motion.div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {libraryContent.map((path, index) => (
-            <motion.div
-              key={path.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              className={`border-4 border-black p-8 neo-shadow hover:neo-shadow-hover group relative overflow-hidden transition-all duration-300 cursor-pointer ${path.color}`}
-            >
-              {/* Difficulty Badge */}
-              <div className={`absolute top-4 right-4 px-3 py-1 ${difficultyColor[path.difficulty]} text-white text-xs font-bold uppercase rounded-full`}>
-                {path.difficulty}
-              </div>
-
-              {/* Icon */}
-              <div className="mb-6 text-black opacity-80 group-hover:opacity-100 transition-opacity">
-                {path.icon}
-              </div>
-
-              {/* Content */}
-              <h3 className="text-2xl font-display font-bold uppercase mb-3 leading-tight group-hover:text-primary transition-colors">
-                {path.title}
-              </h3>
-              
-              <span className="text-xs font-mono uppercase tracking-widest opacity-60 mb-4 inline-block">
-                {path.category}
-              </span>
-
-              <p className="text-base leading-relaxed mb-6 font-medium">
-                {path.description}
-              </p>
-
-              {/* Stats Row */}
-              <div className="border-t-2 border-black pt-4 mb-4 flex gap-6 text-sm">
-                <div>
-                  <span className="font-mono opacity-60">INSTRUCTORS</span>
-                  <div className="font-bold">{path.instructors}</div>
+        {isLoading ? (
+          <div className="border-4 border-black bg-white p-8 neo-shadow animate-pulse">Loading library?</div>
+        ) : paths.length === 0 ? (
+          <div className="border-4 border-black bg-white p-8 neo-shadow">No paths yet. Check back soon.</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {paths.map((path, index) => (
+              <motion.div
+                key={path.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+                className="border-4 border-black p-8 neo-shadow hover:neo-shadow-hover group relative overflow-hidden transition-all duration-300 cursor-pointer bg-white"
+              >
+                {/* Difficulty Badge */}
+                <div
+                  className={`absolute top-4 right-4 px-3 py-1 ${difficultyColor[path.difficulty]} text-white text-xs font-bold uppercase rounded-full`}
+                >
+                  {path.difficulty}
                 </div>
-                <div>
-                  <span className="font-mono opacity-60">RATING</span>
-                  <div className="font-bold">{path.rating}★</div>
-                </div>
-                <div>
-                  <span className="font-mono opacity-60">STUDENTS</span>
-                  <div className="font-bold">{path.students}</div>
-                </div>
-              </div>
 
-              {/* Module Count */}
-              <div className="border-t-2 border-black pt-4 flex justify-between items-center">
-                <span className="font-mono text-sm uppercase font-bold opacity-70">
-                  {path.modules} Modules
+                {/* Icon */}
+                <div className="mb-6 text-black opacity-80 group-hover:opacity-100 transition-opacity">
+                  {categoryIconMap[path.category] ?? categoryIconMap.Default}
+                </div>
+
+                {/* Content */}
+                <h3 className="text-2xl font-display font-bold uppercase mb-3 leading-tight group-hover:text-primary transition-colors">
+                  {path.title}
+                </h3>
+
+                <span className="text-xs font-mono uppercase tracking-widest opacity-60 mb-4 inline-block">
+                  {path.category}
                 </span>
-                <div className="w-6 h-6 border-2 border-black group-hover:bg-black transition-colors" />
-              </div>
-            </motion.div>
-          ))}
-        </div>
+
+                <p className="text-base leading-relaxed mb-6 font-medium">{path.description}</p>
+
+                {/* Stats Row */}
+                <div className="border-t-2 border-black pt-4 mb-4 flex gap-6 text-sm">
+                  <div>
+                    <span className="font-mono opacity-60">INSTRUCTORS</span>
+                    <div className="font-bold">{path.instructors ?? 0}</div>
+                  </div>
+                  <div>
+                    <span className="font-mono opacity-60">RATING</span>
+                    <div className="font-bold">{path.rating ?? 0}?.</div>
+                  </div>
+                  <div>
+                    <span className="font-mono opacity-60">STUDENTS</span>
+                    <div className="font-bold">{path.students ?? 0}</div>
+                  </div>
+                </div>
+
+                {/* Module Count */}
+                <div className="border-t-2 border-black pt-4 flex justify-between items-center">
+                  <span className="font-mono text-sm uppercase font-bold opacity-70">{path.modules} Modules</span>
+                  <div className="w-6 h-6 border-2 border-black group-hover:bg-black transition-colors" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Featured Section */}
         <section className="mb-20">
@@ -258,20 +225,29 @@ export default function Library() {
             <div className="absolute top-4 right-4 bg-accent text-white px-4 py-2 border-2 border-black font-bold uppercase text-sm">
               NEW
             </div>
-            <h3 className="text-4xl font-display font-bold uppercase mb-4">Advanced React Patterns</h3>
+            <h3 className="text-4xl font-display font-bold uppercase mb-4">
+              {paths[0]?.title ?? "Member Highlight"}
+            </h3>
             <p className="text-lg mb-6 max-w-2xl leading-relaxed">
-              Master production-grade React concepts. From hooks and context to state management and performance optimization. Taught by industry engineers.
+              {paths[0]?.description ??
+                "A fresh path is coming into focus. Keep an eye on the vault for the next release."}
             </p>
-            <div className="flex gap-4">
-              <span className="px-4 py-2 bg-white border-2 border-black font-bold uppercase">14 Modules</span>
-              <span className="px-4 py-2 bg-white border-2 border-black font-bold uppercase">Advanced</span>
-              <span className="px-4 py-2 bg-white border-2 border-black font-bold uppercase">Instructors: 3</span>
+            <div className="flex gap-4 flex-wrap">
+              <span className="px-4 py-2 bg-white border-2 border-black font-bold uppercase">
+                {paths[0]?.modules ?? 0} Modules
+              </span>
+              <span className="px-4 py-2 bg-white border-2 border-black font-bold uppercase">
+                {paths[0]?.difficulty ?? "Upcoming"}
+              </span>
+              <span className="px-4 py-2 bg-white border-2 border-black font-bold uppercase">
+                Instructors: {paths[0]?.instructors ?? 0}
+              </span>
             </div>
           </motion.div>
         </section>
 
         {/* CTA Section */}
-        <motion.div 
+        <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
