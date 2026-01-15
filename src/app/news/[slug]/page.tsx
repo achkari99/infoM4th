@@ -25,11 +25,12 @@ interface NewsArticle {
   pull_quote: string | null;
 }
 
-export default async function NewsArticlePage({ params }: { params: { slug: string } }) {
+export default async function NewsArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const { data, error } = await supabase
     .from("news")
     .select("*")
-    .eq("slug", params.slug)
+    .eq("slug", slug)
     .is("archived_at", null)
     .maybeSingle();
 
