@@ -134,7 +134,7 @@ export default function Join() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white border-4 border-black p-8 md:p-12 neo-shadow-lg h-fit"
+          className="bg-card border-4 border-border p-8 md:p-12 neo-shadow-lg h-fit"
           >
             <h3 className="text-3xl font-display font-bold uppercase mb-8">Quick Signup</h3>
 

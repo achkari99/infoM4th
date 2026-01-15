@@ -20,12 +20,12 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-black text-white flex">
-      <aside className="w-64 border-r border-zinc-900 p-6 flex flex-col gap-8 hidden md:flex">
+    <div className="min-h-screen bg-background text-foreground flex">
+      <aside className="w-64 border-r border-border p-6 flex flex-col gap-8 hidden md:flex">
         <div className="flex items-center gap-3 px-2">
-          <div className="w-8 h-8 rounded bg-white" />
+          <div className="w-8 h-8 rounded bg-primary" />
           <div>
-            <div className="text-xs uppercase tracking-[0.3em] text-zinc-500">Admin</div>
+            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Admin</div>
             <span className="font-bold text-xl tracking-tight">INFOM4TH</span>
           </div>
         </div>
@@ -38,7 +38,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                 key={item.href}
                 href={item.href}
                 className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-                  isActive ? "bg-zinc-800 text-white" : "text-zinc-500 hover:text-white hover:bg-zinc-900"
+                  isActive
+                    ? "bg-primary/10 text-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                 }`}
               >
                 <item.icon size={20} />
@@ -48,28 +50,28 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           })}
         </nav>
 
-        <div className="border border-zinc-900 rounded-2xl p-4 text-xs uppercase tracking-[0.2em] text-zinc-500">
+        <div className="border border-border rounded-2xl p-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Command line quiet.
 System calm.
         </div>
       </aside>
 
       <main className="flex-1 overflow-auto pt-16">
-        <header className="h-16 border-b border-zinc-900 px-8 flex items-center justify-between sticky top-16 bg-black/80 backdrop-blur-xl z-10">
-          <div className="flex items-center gap-4 bg-zinc-950/80 px-3 py-1.5 rounded-full border border-zinc-800 w-96">
-            <Search size={18} className="text-zinc-500" />
+        <header className="h-16 border-b border-border px-8 flex items-center justify-between sticky top-16 bg-background/70 backdrop-blur-xl z-10">
+          <div className="flex items-center gap-4 bg-card/70 px-3 py-1.5 rounded-full border border-border w-96">
+            <Search size={18} className="text-muted-foreground" />
             <input
               type="text"
               placeholder="Search admin..."
-              className="bg-transparent border-none outline-none text-sm w-full"
+              className="bg-transparent border-none outline-none text-sm w-full text-foreground placeholder:text-muted-foreground"
             />
           </div>
           <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-3 border border-zinc-800 rounded-full px-4 py-2 text-xs uppercase tracking-[0.25em] text-zinc-500">
+            <div className="hidden md:flex items-center gap-3 border border-border rounded-full px-4 py-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
               <Activity size={14} className="text-primary" />
               Live
             </div>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 border-2 border-zinc-800 overflow-hidden">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary border-2 border-border overflow-hidden">
               <Image src={popArtImage} alt="Admin" className="w-full h-full object-cover" />
             </div>
           </div>

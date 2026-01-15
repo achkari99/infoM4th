@@ -3,16 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Menu, ShieldCheck, UserCircle2, X } from "lucide-react";
+import { Menu, Moon, ShieldCheck, Sun, UserCircle2, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { supabase } from "@/lib/supabaseClient";
 import { useSupabaseSession } from "@/hooks/useSupabaseSession";
 
 export default function Navbar() {
   const pathname = usePathname();
   const { user } = useSupabaseSession();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const loadRole = async () => {
@@ -33,6 +36,10 @@ export default function Navbar() {
     loadRole();
   }, [user]);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -43,7 +50,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference text-white">
+    <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-background/60 text-foreground backdrop-blur-2xl border-b border-white/20 shadow-[0_8px_30px_rgba(11,58,79,0.18)]">
       <Link href="/" className="text-2xl font-display font-bold tracking-tighter hover-trigger cursor-pointer">
         INFO<span className="text-primary">M4TH</span>
       </Link>
@@ -101,6 +108,15 @@ export default function Navbar() {
           </div>
         )}
 
+        <button
+          type="button"
+          aria-label="Toggle theme"
+          onClick={() => setTheme((resolvedTheme ?? theme) === "dark" ? "light" : "dark")}
+          className="h-10 w-10 rounded-full border border-white/30 bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center"
+        >
+          {isMounted && (resolvedTheme ?? theme) === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
+
         <Link
           href="/join"
           className="px-6 py-2 bg-primary text-white font-bold border-2 border-transparent hover:border-white hover:bg-white hover:text-primary transition-all neo-shadow hover:neo-shadow-hover hover-trigger cursor-pointer"
@@ -122,6 +138,18 @@ export default function Navbar() {
           exit={{ opacity: 0, y: -20 }}
           className="absolute top-16 left-0 w-full bg-background border-b-4 border-black text-foreground p-8 flex flex-col gap-6 md:hidden shadow-2xl"
         >
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-mono uppercase tracking-widest opacity-60">Theme</span>
+            <button
+              type="button"
+              aria-label="Toggle theme"
+              onClick={() => setTheme((resolvedTheme ?? theme) === "dark" ? "light" : "dark")}
+              className="h-10 w-10 rounded-full border border-border bg-card/70 hover:bg-card transition-colors flex items-center justify-center"
+            >
+              {isMounted && (resolvedTheme ?? theme) === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </div>
+
           {navItems.map((item) => (
             <Link
               key={item.path}

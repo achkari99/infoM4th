@@ -115,18 +115,18 @@ export default function AdminAnalyticsPage() {
 
   if (sessionLoading || isLoading) {
     return (
-      <div className="p-8 max-w-7xl mx-auto text-zinc-500 uppercase tracking-[0.3em] text-xs">Loading analytics</div>
+      <div className="p-8 max-w-7xl mx-auto text-muted-foreground uppercase tracking-[0.3em] text-xs">Loading analytics</div>
     );
   }
 
   if (!isAuthorized) {
     return (
       <div className="p-8 max-w-3xl mx-auto">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Access restricted</CardTitle>
+            <CardTitle className="text-foreground">Access restricted</CardTitle>
           </CardHeader>
-          <CardContent className="text-zinc-400">
+          <CardContent className="text-muted-foreground">
             Admin access is required to view analytics.
           </CardContent>
         </Card>
@@ -136,23 +136,23 @@ export default function AdminAnalyticsPage() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8">
-      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-zinc-500">
+      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
         <span className="h-1 w-10 bg-primary/70" />
         Signal Readout
       </div>
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Analytics</h1>
-          <p className="text-zinc-500">Quiet metrics for steady decisions.</p>
+          <p className="text-muted-foreground">Quiet metrics for steady decisions.</p>
         </div>
-        <div className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-zinc-500">
+        <div className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
           <Activity size={14} className="text-primary" />
           Live
         </div>
       </div>
 
       {statusMessage && (
-        <div className="border border-zinc-800 bg-zinc-900/60 text-zinc-300 text-sm px-4 py-3 rounded-2xl">
+        <div className="border border-border bg-card/60 text-muted-foreground text-sm px-4 py-3 rounded-2xl">
           {statusMessage}
         </div>
       )}
@@ -165,20 +165,20 @@ export default function AdminAnalyticsPage() {
           { label: "Library", value: stats.library },
           { label: "Join Requests", value: stats.joins },
         ].map((stat) => (
-          <Card key={stat.label} className="bg-zinc-900 border-zinc-800">
+          <Card key={stat.label} className="bg-card border-border">
             <CardHeader className="pb-2">
-              <span className="text-zinc-500 text-sm font-medium">{stat.label}</span>
+              <span className="text-muted-foreground text-sm font-medium">{stat.label}</span>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">{stat.value}</div>
+              <div className="text-2xl font-bold text-foreground">{stat.value}</div>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-white flex items-center gap-3">
+          <CardTitle className="text-foreground flex items-center gap-3">
             <BarChart3 size={18} className="text-primary" />
             Weekly Join Requests
           </CardTitle>
@@ -191,7 +191,7 @@ export default function AdminAnalyticsPage() {
                   className="w-full rounded-full bg-primary/40"
                   style={{ height: `${(point.count / maxJoins) * 100}%` }}
                 />
-                <span className="text-xs text-zinc-500">{point.day}</span>
+                <span className="text-xs text-muted-foreground">{point.day}</span>
               </div>
             ))}
           </div>
@@ -199,22 +199,22 @@ export default function AdminAnalyticsPage() {
       </Card>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white flex items-center gap-3">
+            <CardTitle className="text-foreground flex items-center gap-3">
               <Database size={18} className="text-primary" />
               Data Integrity
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-zinc-400">
+          <CardContent className="text-muted-foreground">
             All event, news, and library entries are syncing from Supabase. Refresh intervals stay under 60 seconds.
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Focus</CardTitle>
+            <CardTitle className="text-foreground">Focus</CardTitle>
           </CardHeader>
-          <CardContent className="text-zinc-400">
+          <CardContent className="text-muted-foreground">
             Join-request velocity suggests when to schedule onboarding sessions and mentorship matching.
           </CardContent>
         </Card>

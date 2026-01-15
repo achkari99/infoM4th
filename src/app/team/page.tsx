@@ -34,7 +34,7 @@ export default function Team() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="max-w-3xl mx-auto text-center mb-20 border-4 border-black bg-white p-8 neo-shadow"
+          className="max-w-3xl mx-auto text-center mb-20 border-4 border-border bg-card p-8 neo-shadow"
         >
           <p className="text-2xl font-bold leading-relaxed">
             A diverse group of students dedicated to building an exceptional learning community. Each member brings unique perspectives and expertise.
@@ -50,7 +50,7 @@ export default function Team() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="border-4 border-black bg-white p-8 neo-shadow hover:neo-shadow-hover group relative overflow-hidden"
+              className="border-4 border-border bg-card p-8 neo-shadow hover:neo-shadow-hover group relative overflow-hidden"
             >
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-5 transition-opacity duration-300" />

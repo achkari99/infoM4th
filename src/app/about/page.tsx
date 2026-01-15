@@ -51,13 +51,13 @@ export default function About() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="border-4 border-black bg-white p-8 neo-shadow">
+            <div className="border-4 border-border bg-card p-8 neo-shadow">
               <h3 className="text-3xl font-display font-bold uppercase mb-3">Founded on Connection</h3>
               <p className="text-lg opacity-80">
                 InfoM4th bridges the gap between theory and practice. We bring together students passionate about both disciplines to learn, build, and grow together. It's not either/or. It's both.
               </p>
             </div>
-            <div className="border-4 border-black bg-white p-8 neo-shadow">
+            <div className="border-4 border-border bg-card p-8 neo-shadow">
               <h3 className="text-3xl font-display font-bold uppercase mb-3">Built by Students</h3>
               <p className="text-lg opacity-80">
                 Everything we do is shaped by student voices. Our workshops, projects, and learning paths come from what we actually want to learn. We're not following a curriculum; we're creating one.
@@ -80,7 +80,7 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="border-4 border-black bg-white p-8 neo-shadow hover:neo-shadow-hover group relative overflow-hidden"
+                  className="border-4 border-border bg-card p-8 neo-shadow hover:neo-shadow-hover group relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                   <div className="relative z-10">
@@ -110,7 +110,7 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="border-4 border-black bg-white p-8 neo-shadow hover:neo-shadow-hover group"
+                className="border-4 border-border bg-card p-8 neo-shadow hover:neo-shadow-hover group"
               >
                 <div className="flex items-start gap-8">
                   <div className="flex-shrink-0">

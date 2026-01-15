@@ -46,7 +46,7 @@ export default function Contact() {
           Get In Touch
         </h1>
         
-        <div className="bg-white border-4 border-black p-8 md:p-12 neo-shadow-lg">
+        <div className="bg-card border-4 border-border p-8 md:p-12 neo-shadow-lg">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField

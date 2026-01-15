@@ -105,18 +105,18 @@ export default function AdminNotificationsPage() {
 
   if (sessionLoading || isLoading) {
     return (
-      <div className="p-8 max-w-7xl mx-auto text-zinc-500 uppercase tracking-[0.3em] text-xs">Loading notifications</div>
+      <div className="p-8 max-w-7xl mx-auto text-muted-foreground uppercase tracking-[0.3em] text-xs">Loading notifications</div>
     );
   }
 
   if (!isAuthorized) {
     return (
       <div className="p-8 max-w-3xl mx-auto">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Access restricted</CardTitle>
+            <CardTitle className="text-foreground">Access restricted</CardTitle>
           </CardHeader>
-          <CardContent className="text-zinc-400">
+          <CardContent className="text-muted-foreground">
             Admin access is required to view notifications.
           </CardContent>
         </Card>
@@ -126,45 +126,45 @@ export default function AdminNotificationsPage() {
 
   return (
     <div className="p-8 max-w-5xl mx-auto space-y-8">
-      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-zinc-500">
+      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
         <span className="h-1 w-10 bg-primary/70" />
         System Notices
       </div>
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Notifications</h1>
-          <p className="text-zinc-500">All admin-visible system signals in one feed.</p>
+          <p className="text-muted-foreground">All admin-visible system signals in one feed.</p>
         </div>
-        <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-zinc-500">
+        <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
           <Bell size={14} className="text-primary" />
           Quiet mode
         </div>
       </div>
 
       {statusMessage && (
-        <div className="border border-zinc-800 bg-zinc-900/60 text-zinc-300 text-sm px-4 py-3 rounded-2xl">
+        <div className="border border-border bg-card/60 text-muted-foreground text-sm px-4 py-3 rounded-2xl">
           {statusMessage}
         </div>
       )}
 
       <div className="space-y-4">
         {notifications.length === 0 ? (
-          <Card className="bg-zinc-900 border-zinc-800">
-            <CardContent className="text-zinc-500 p-6">No notifications yet.</CardContent>
+          <Card className="bg-card border-border">
+            <CardContent className="text-muted-foreground p-6">No notifications yet.</CardContent>
           </Card>
         ) : (
           notifications.map((notice) => (
-            <Card key={notice.id} className="bg-zinc-900 border-zinc-800">
+            <Card key={notice.id} className="bg-card border-border">
               <CardContent className="p-6 flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center">
                   {iconForType[notice.type]}
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between gap-6">
-                    <h2 className="text-white font-semibold">{notice.title}</h2>
-                    <span className="text-xs text-zinc-500">{notice.timestamp}</span>
+                    <h2 className="text-foreground font-semibold">{notice.title}</h2>
+                    <span className="text-xs text-muted-foreground">{notice.timestamp}</span>
                   </div>
-                  <p className="text-zinc-400 text-sm">{notice.detail}</p>
+                  <p className="text-muted-foreground text-sm">{notice.detail}</p>
                 </div>
               </CardContent>
             </Card>

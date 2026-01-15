@@ -71,18 +71,18 @@ export default function AdminAuditPage() {
 
   if (sessionLoading || isLoading) {
     return (
-      <div className="p-8 max-w-7xl mx-auto text-zinc-500 uppercase tracking-[0.3em] text-xs">Loading audit log</div>
+      <div className="p-8 max-w-7xl mx-auto text-muted-foreground uppercase tracking-[0.3em] text-xs">Loading audit log</div>
     );
   }
 
   if (!isAuthorized) {
     return (
       <div className="p-8 max-w-3xl mx-auto">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Access restricted</CardTitle>
+            <CardTitle className="text-foreground">Access restricted</CardTitle>
           </CardHeader>
-          <CardContent className="text-zinc-400">Admin access is required to view audit logs.</CardContent>
+          <CardContent className="text-muted-foreground">Admin access is required to view audit logs.</CardContent>
         </Card>
       </div>
     );
@@ -90,39 +90,39 @@ export default function AdminAuditPage() {
 
   return (
     <div className="p-8 max-w-5xl mx-auto space-y-8">
-      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-zinc-500">
+      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
         <span className="h-1 w-10 bg-primary/70" />
         Security Ledger
       </div>
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Audit Log</h1>
-          <p className="text-zinc-500">Every admin action, quietly recorded.</p>
+          <p className="text-muted-foreground">Every admin action, quietly recorded.</p>
         </div>
         <Shield size={20} className="text-primary" />
       </div>
 
       {statusMessage && (
-        <div className="border border-zinc-800 bg-zinc-900/60 text-zinc-300 text-sm px-4 py-3 rounded-2xl">
+        <div className="border border-border bg-card/60 text-muted-foreground text-sm px-4 py-3 rounded-2xl">
           {statusMessage}
         </div>
       )}
 
       <div className="space-y-4">
         {logs.length === 0 ? (
-          <Card className="bg-zinc-900 border-zinc-800">
-            <CardContent className="text-zinc-500 p-6">No audit events yet.</CardContent>
+          <Card className="bg-card border-border">
+            <CardContent className="text-muted-foreground p-6">No audit events yet.</CardContent>
           </Card>
         ) : (
           logs.map((log) => (
-            <Card key={log.id} className="bg-zinc-900 border-zinc-800">
+            <Card key={log.id} className="bg-card border-border">
               <CardContent className="p-6 flex flex-col gap-3">
-                <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-zinc-500">
+                <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   <span>{log.action}</span>
                   <span>{new Date(log.created_at).toLocaleString()}</span>
                 </div>
-                <div className="text-white font-medium">{log.detail ?? "Action recorded"}</div>
-                <div className="text-xs text-zinc-500">
+                <div className="text-foreground font-medium">{log.detail ?? "Action recorded"}</div>
+                <div className="text-xs text-muted-foreground">
                   {log.target_type ?? "system"} {log.target_id ?? ""}
                 </div>
               </CardContent>

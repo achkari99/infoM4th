@@ -70,7 +70,7 @@ export default async function NewsArticlePage({ params }: { params: { slug: stri
           </div>
         </div>
 
-        <div className="mt-12 border-4 border-black bg-white neo-shadow relative overflow-hidden">
+        <div className="mt-12 border-4 border-border bg-card neo-shadow relative overflow-hidden">
           <div className="absolute -left-16 top-12 h-full w-28 border-r-4 border-black/20" />
           <div className="absolute -right-6 top-10 h-24 w-24 border-4 border-primary rotate-6" />
 
@@ -103,14 +103,14 @@ export default async function NewsArticlePage({ params }: { params: { slug: stri
 
         {article.pull_quote && (
           <div className="mt-12 border-4 border-black bg-secondary p-10 neo-shadow-lg flex flex-col md:flex-row gap-8 items-center">
-            <div className="flex items-center justify-center w-16 h-16 border-4 border-black bg-white">
+            <div className="flex items-center justify-center w-16 h-16 border-4 border-border bg-card">
               <Quote size={28} className="text-primary" />
             </div>
             <p className="text-2xl md:text-3xl font-display font-black uppercase">{article.pull_quote}</p>
           </div>
         )}
 
-        <div className="mt-12 border-4 border-black bg-white p-8 md:p-10 neo-shadow flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="mt-12 border-4 border-border bg-card p-8 md:p-10 neo-shadow flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <div className="text-xs font-mono uppercase tracking-[0.3em] text-foreground/70 mb-2">Read more</div>
             <h3 className="text-3xl font-display font-black uppercase">Explore the full news feed</h3>

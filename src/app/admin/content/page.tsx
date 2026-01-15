@@ -335,18 +335,18 @@ export default function AdminContentPage() {
 
   if (sessionLoading || isLoading) {
     return (
-      <div className="p-8 max-w-7xl mx-auto text-zinc-500 uppercase tracking-[0.3em] text-xs">Loading content</div>
+      <div className="p-8 max-w-7xl mx-auto text-muted-foreground uppercase tracking-[0.3em] text-xs">Loading content</div>
     );
   }
 
   if (!isAuthorized) {
     return (
       <div className="p-8 max-w-3xl mx-auto">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Access restricted</CardTitle>
+            <CardTitle className="text-foreground">Access restricted</CardTitle>
           </CardHeader>
-          <CardContent className="text-zinc-400">Admin access is required to manage content.</CardContent>
+          <CardContent className="text-muted-foreground">Admin access is required to manage content.</CardContent>
         </Card>
       </div>
     );
@@ -354,57 +354,57 @@ export default function AdminContentPage() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-10">
-      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-zinc-500">
+      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
         <span className="h-1 w-10 bg-primary/70" />
         Content Suite
       </div>
       <div>
         <h1 className="text-3xl font-bold">Content</h1>
-        <p className="text-zinc-500">Create, curate, and ship new drops.</p>
+        <p className="text-muted-foreground">Create, curate, and ship new drops.</p>
       </div>
 
       {statusMessage && (
-        <div className="border border-zinc-800 bg-zinc-900/60 text-zinc-300 text-sm px-4 py-3 rounded-2xl">
+        <div className="border border-border bg-card/60 text-muted-foreground text-sm px-4 py-3 rounded-2xl">
           {statusMessage}
         </div>
       )}
 
       <div className="grid lg:grid-cols-2 gap-8">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">News Composer</CardTitle>
+            <CardTitle className="text-foreground">News Composer</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Input
               placeholder="Slug"
               value={newsDraft.slug}
               onChange={(event) => setNewsDraft({ ...newsDraft, slug: event.target.value })}
-              className="bg-zinc-950 border-zinc-800 text-white"
+              className="bg-background border-border text-foreground"
             />
             <Input
               placeholder="Title"
               value={newsDraft.title}
               onChange={(event) => setNewsDraft({ ...newsDraft, title: event.target.value })}
-              className="bg-zinc-950 border-zinc-800 text-white"
+              className="bg-background border-border text-foreground"
             />
             <Textarea
               placeholder="Summary"
               value={newsDraft.summary}
               onChange={(event) => setNewsDraft({ ...newsDraft, summary: event.target.value })}
-              className="bg-zinc-950 border-zinc-800 text-white"
+              className="bg-background border-border text-foreground"
             />
             <div className="grid md:grid-cols-2 gap-4">
               <Input
                 placeholder="Category"
                 value={newsDraft.category}
                 onChange={(event) => setNewsDraft({ ...newsDraft, category: event.target.value })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
               <Input
                 placeholder="Tag"
                 value={newsDraft.tag}
                 onChange={(event) => setNewsDraft({ ...newsDraft, tag: event.target.value })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
             </div>
             <div className="grid md:grid-cols-2 gap-4">
@@ -412,23 +412,23 @@ export default function AdminContentPage() {
                 placeholder="Date (Jan 20, 2026)"
                 value={newsDraft.date}
                 onChange={(event) => setNewsDraft({ ...newsDraft, date: event.target.value })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
               <Input
                 placeholder="Read time"
                 value={newsDraft.read_time}
                 onChange={(event) => setNewsDraft({ ...newsDraft, read_time: event.target.value })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
             </div>
             <Textarea
               placeholder="Body text"
               value={newsDraft.body}
               onChange={(event) => setNewsDraft({ ...newsDraft, body: event.target.value })}
-              className="bg-zinc-950 border-zinc-800 text-white min-h-[140px]"
+              className="bg-background border-border text-foreground min-h-[140px]"
             />
             <div className="flex items-center justify-between">
-              <label className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+              <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 <input
                   type="checkbox"
                   checked={newsDraft.is_featured}
@@ -441,7 +441,7 @@ export default function AdminContentPage() {
                 {editingNewsId && (
                   <Button
                     variant="ghost"
-                    className="text-zinc-400"
+                    className="text-muted-foreground"
                     onClick={() => {
                       setEditingNewsId(null);
                       setNewsDraft(emptyNewsDraft);
@@ -458,28 +458,28 @@ export default function AdminContentPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Recent News</CardTitle>
+            <CardTitle className="text-foreground">Recent News</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {latestNews.length === 0 ? (
-              <div className="text-zinc-500">No news published.</div>
+              <div className="text-muted-foreground">No news published.</div>
             ) : (
               latestNews.map((item) => (
-                <div key={item.id} className="border border-zinc-800 rounded-2xl p-4">
+                <div key={item.id} className="border border-border rounded-2xl p-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-white font-medium">{item.title}</p>
-                      <p className="text-xs text-zinc-500">{item.date}</p>
+                      <p className="text-foreground font-medium">{item.title}</p>
+                      <p className="text-xs text-muted-foreground">{item.date}</p>
                     </div>
-                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
+                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                       {item.archived_at ? "archived" : "live"}
                     </div>
                   </div>
-                  <div className="mt-3 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-zinc-400">
+                  <div className="mt-3 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                     <button
-                      className="hover:text-white"
+                      className="hover:text-foreground"
                       onClick={() => {
                         setEditingNewsId(item.id ?? null);
                         setNewsDraft({ ...item, body: item.body ?? "" });
@@ -488,7 +488,7 @@ export default function AdminContentPage() {
                       Edit
                     </button>
                     <button
-                      className="hover:text-white"
+                      className="hover:text-foreground"
                       onClick={() => toggleArchive("news", item.id, item.title, item.archived_at)}
                     >
                       {item.archived_at ? "Restore" : "Archive"}
@@ -502,29 +502,29 @@ export default function AdminContentPage() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Event Builder</CardTitle>
+            <CardTitle className="text-foreground">Event Builder</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Input
               placeholder="Title"
               value={eventDraft.title}
               onChange={(event) => setEventDraft({ ...eventDraft, title: event.target.value })}
-              className="bg-zinc-950 border-zinc-800 text-white"
+              className="bg-background border-border text-foreground"
             />
             <div className="grid md:grid-cols-2 gap-4">
               <Input
                 placeholder="Date"
                 value={eventDraft.date}
                 onChange={(event) => setEventDraft({ ...eventDraft, date: event.target.value })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
               <Input
                 placeholder="Time"
                 value={eventDraft.time}
                 onChange={(event) => setEventDraft({ ...eventDraft, time: event.target.value })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
             </div>
             <div className="grid md:grid-cols-2 gap-4">
@@ -532,20 +532,20 @@ export default function AdminContentPage() {
                 placeholder="Location"
                 value={eventDraft.location}
                 onChange={(event) => setEventDraft({ ...eventDraft, location: event.target.value })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
               <Input
                 placeholder="Category"
                 value={eventDraft.category}
                 onChange={(event) => setEventDraft({ ...eventDraft, category: event.target.value })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
             </div>
             <Textarea
               placeholder="Description"
               value={eventDraft.description}
               onChange={(event) => setEventDraft({ ...eventDraft, description: event.target.value })}
-              className="bg-zinc-950 border-zinc-800 text-white min-h-[120px]"
+              className="bg-background border-border text-foreground min-h-[120px]"
             />
             <div className="grid md:grid-cols-2 gap-4">
               <Input
@@ -557,20 +557,20 @@ export default function AdminContentPage() {
                     status: event.target.value === "past" ? "past" : "upcoming",
                   })
                 }
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
               <Input
                 placeholder="Registration URL"
                 value={eventDraft.registration_url}
                 onChange={(event) => setEventDraft({ ...eventDraft, registration_url: event.target.value })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
             </div>
             <div className="flex items-center gap-3">
               {editingEventId && (
                 <Button
                   variant="ghost"
-                  className="text-zinc-400"
+                  className="text-muted-foreground"
                   onClick={() => {
                     setEditingEventId(null);
                     setEventDraft(emptyEventDraft);
@@ -586,28 +586,28 @@ export default function AdminContentPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Upcoming + Recent</CardTitle>
+            <CardTitle className="text-foreground">Upcoming + Recent</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {latestEvents.length === 0 ? (
-              <div className="text-zinc-500">No events yet.</div>
+              <div className="text-muted-foreground">No events yet.</div>
             ) : (
               latestEvents.map((item) => (
-                <div key={item.id} className="border border-zinc-800 rounded-2xl p-4">
+                <div key={item.id} className="border border-border rounded-2xl p-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-white font-medium">{item.title}</p>
-                      <p className="text-xs text-zinc-500">{item.date}</p>
+                      <p className="text-foreground font-medium">{item.title}</p>
+                      <p className="text-xs text-muted-foreground">{item.date}</p>
                     </div>
-                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
+                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                       {item.archived_at ? "archived" : item.status}
                     </div>
                   </div>
-                  <div className="mt-3 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-zinc-400">
+                  <div className="mt-3 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                     <button
-                      className="hover:text-white"
+                      className="hover:text-foreground"
                       onClick={() => {
                         setEditingEventId(item.id ?? null);
                         setEventDraft(item);
@@ -616,7 +616,7 @@ export default function AdminContentPage() {
                       Edit
                     </button>
                     <button
-                      className="hover:text-white"
+                      className="hover:text-foreground"
                       onClick={() => toggleArchive("events", item.id, item.title, item.archived_at)}
                     >
                       {item.archived_at ? "Restore" : "Archive"}
@@ -630,28 +630,28 @@ export default function AdminContentPage() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Library Entry</CardTitle>
+            <CardTitle className="text-foreground">Library Entry</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Input
               placeholder="Title"
               value={libraryDraft.title}
               onChange={(event) => setLibraryDraft({ ...libraryDraft, title: event.target.value })}
-              className="bg-zinc-950 border-zinc-800 text-white"
+              className="bg-background border-border text-foreground"
             />
             <Input
               placeholder="Category"
               value={libraryDraft.category}
               onChange={(event) => setLibraryDraft({ ...libraryDraft, category: event.target.value })}
-              className="bg-zinc-950 border-zinc-800 text-white"
+              className="bg-background border-border text-foreground"
             />
             <Textarea
               placeholder="Description"
               value={libraryDraft.description}
               onChange={(event) => setLibraryDraft({ ...libraryDraft, description: event.target.value })}
-              className="bg-zinc-950 border-zinc-800 text-white min-h-[120px]"
+              className="bg-background border-border text-foreground min-h-[120px]"
             />
             <div className="grid md:grid-cols-3 gap-4">
               <Input
@@ -659,7 +659,7 @@ export default function AdminContentPage() {
                 type="number"
                 value={libraryDraft.modules}
                 onChange={(event) => setLibraryDraft({ ...libraryDraft, modules: Number(event.target.value) })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
               <Input
                 placeholder="Difficulty"
@@ -674,14 +674,14 @@ export default function AdminContentPage() {
                         : "Beginner",
                   })
                 }
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
               <Input
                 placeholder="Instructors"
                 type="number"
                 value={libraryDraft.instructors}
                 onChange={(event) => setLibraryDraft({ ...libraryDraft, instructors: Number(event.target.value) })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
             </div>
             <div className="grid md:grid-cols-2 gap-4">
@@ -691,21 +691,21 @@ export default function AdminContentPage() {
                 step="0.1"
                 value={libraryDraft.rating}
                 onChange={(event) => setLibraryDraft({ ...libraryDraft, rating: Number(event.target.value) })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
               <Input
                 placeholder="Students"
                 type="number"
                 value={libraryDraft.students}
                 onChange={(event) => setLibraryDraft({ ...libraryDraft, students: Number(event.target.value) })}
-                className="bg-zinc-950 border-zinc-800 text-white"
+                className="bg-background border-border text-foreground"
               />
             </div>
             <div className="flex items-center gap-3">
               {editingLibraryId && (
                 <Button
                   variant="ghost"
-                  className="text-zinc-400"
+                  className="text-muted-foreground"
                   onClick={() => {
                     setEditingLibraryId(null);
                     setLibraryDraft(emptyLibraryDraft);
@@ -721,28 +721,28 @@ export default function AdminContentPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Latest Paths</CardTitle>
+            <CardTitle className="text-foreground">Latest Paths</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {latestLibrary.length === 0 ? (
-              <div className="text-zinc-500">No library paths yet.</div>
+              <div className="text-muted-foreground">No library paths yet.</div>
             ) : (
               latestLibrary.map((item) => (
-                <div key={item.id} className="border border-zinc-800 rounded-2xl p-4">
+                <div key={item.id} className="border border-border rounded-2xl p-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-white font-medium">{item.title}</p>
-                      <p className="text-xs text-zinc-500">{item.category}</p>
+                      <p className="text-foreground font-medium">{item.title}</p>
+                      <p className="text-xs text-muted-foreground">{item.category}</p>
                     </div>
-                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
+                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                       {item.archived_at ? "archived" : item.difficulty}
                     </div>
                   </div>
-                  <div className="mt-3 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-zinc-400">
+                  <div className="mt-3 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                     <button
-                      className="hover:text-white"
+                      className="hover:text-foreground"
                       onClick={() => {
                         setEditingLibraryId(item.id ?? null);
                         setLibraryDraft(item);
@@ -751,7 +751,7 @@ export default function AdminContentPage() {
                       Edit
                     </button>
                     <button
-                      className="hover:text-white"
+                      className="hover:text-foreground"
                       onClick={() => toggleArchive("library_paths", item.id, item.title, item.archived_at)}
                     >
                       {item.archived_at ? "Restore" : "Archive"}

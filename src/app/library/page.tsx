@@ -94,7 +94,7 @@ export default function Library() {
         </motion.div>
 
         {error && (
-          <div className="border-4 border-black bg-white p-6 neo-shadow mb-10 text-lg">{error}</div>
+          <div className="border-4 border-border bg-card p-6 neo-shadow mb-10 text-lg">{error}</div>
         )}
 
         {/* Stats Bar */}
@@ -117,7 +117,7 @@ export default function Library() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + i * 0.05 }}
-                className="bg-white border-3 border-black p-4 text-center neo-shadow"
+                className="bg-card border-3 border-border p-4 text-center neo-shadow"
               >
                 <Icon size={24} className="mx-auto mb-2 text-primary" />
                 <div className="text-3xl font-display font-bold">{stat.value}</div>
@@ -150,9 +150,9 @@ export default function Library() {
 
         {/* Content Grid */}
         {isLoading ? (
-          <div className="border-4 border-black bg-white p-8 neo-shadow animate-pulse">Loading library?</div>
+          <div className="border-4 border-border bg-card p-8 neo-shadow animate-pulse">Loading library?</div>
         ) : paths.length === 0 ? (
-          <div className="border-4 border-black bg-white p-8 neo-shadow">No paths yet. Check back soon.</div>
+          <div className="border-4 border-border bg-card p-8 neo-shadow">No paths yet. Check back soon.</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {paths.map((path, index) => (
@@ -162,7 +162,7 @@ export default function Library() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="border-4 border-black p-8 neo-shadow hover:neo-shadow-hover group relative overflow-hidden transition-all duration-300 cursor-pointer bg-white"
+                className="border-4 border-border p-8 neo-shadow hover:neo-shadow-hover group relative overflow-hidden transition-all duration-300 cursor-pointer bg-card"
               >
                 {/* Difficulty Badge */}
                 <div
@@ -233,13 +233,13 @@ export default function Library() {
                 "A fresh path is coming into focus. Keep an eye on the vault for the next release."}
             </p>
             <div className="flex gap-4 flex-wrap">
-              <span className="px-4 py-2 bg-white border-2 border-black font-bold uppercase">
+              <span className="px-4 py-2 bg-card border-2 border-border font-bold uppercase">
                 {paths[0]?.modules ?? 0} Modules
               </span>
-              <span className="px-4 py-2 bg-white border-2 border-black font-bold uppercase">
+              <span className="px-4 py-2 bg-card border-2 border-border font-bold uppercase">
                 {paths[0]?.difficulty ?? "Upcoming"}
               </span>
-              <span className="px-4 py-2 bg-white border-2 border-black font-bold uppercase">
+              <span className="px-4 py-2 bg-card border-2 border-border font-bold uppercase">
                 Instructors: {paths[0]?.instructors ?? 0}
               </span>
             </div>

@@ -169,10 +169,10 @@ export default function ProfilePage() {
 
   if (sessionLoading || isLoading) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white p-6 md:p-12">
+      <div className="min-h-screen bg-background text-foreground p-6 md:p-12">
         <div className="max-w-5xl mx-auto animate-pulse space-y-8">
-          <div className="h-40 bg-zinc-900 rounded-3xl" />
-          <div className="h-32 bg-zinc-900 rounded-3xl" />
+          <div className="h-40 bg-card rounded-3xl" />
+          <div className="h-32 bg-card rounded-3xl" />
         </div>
       </div>
     );
@@ -180,16 +180,16 @@ export default function ProfilePage() {
 
   if (!profile) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white p-6 md:p-12 flex items-center justify-center">
-        <Card className="bg-zinc-900 border-zinc-800 max-w-lg">
+      <div className="min-h-screen bg-background text-foreground p-6 md:p-12 flex items-center justify-center">
+        <Card className="bg-card border-border max-w-lg">
           <CardHeader>
-            <CardTitle className="text-white">Profile unavailable</CardTitle>
+            <CardTitle className="text-foreground">Profile unavailable</CardTitle>
           </CardHeader>
-          <CardContent className="text-zinc-400">
+          <CardContent className="text-muted-foreground">
             We could not load your profile right now. Try again or return to the homepage.
             <div className="mt-4">
               <Link href="/">
-                <Button className="bg-white text-black hover:bg-zinc-200">Go Home</Button>
+                <Button className="bg-primary text-primary-foreground hover:bg-accent">Go Home</Button>
               </Link>
             </div>
           </CardContent>
@@ -201,7 +201,7 @@ export default function ProfilePage() {
   const avatarUrl = formState?.avatar_url;
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6 md:p-12">
+    <div className="min-h-screen bg-background text-foreground p-6 md:p-12">
       <div className="max-w-5xl mx-auto space-y-12">
         {/* Profile Header */}
         <div className="relative group">
@@ -212,19 +212,19 @@ export default function ProfilePage() {
               fill
               className="object-cover blur-sm opacity-50 scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-950" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[hsl(var(--background))]" />
           </div>
 
           <div className="absolute -bottom-8 left-8 flex items-end gap-6">
             <div className="relative">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-3xl bg-zinc-900 border-4 border-zinc-950 overflow-hidden shadow-2xl relative">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-3xl bg-card border-4 border-background overflow-hidden shadow-2xl relative">
                 {avatarUrl ? (
                   <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
                 ) : (
                   <Image src={popArtImage} alt="Avatar" fill className="object-cover" />
                 )}
               </div>
-              <label className="absolute -bottom-2 -right-2 p-2 bg-white text-black rounded-xl shadow-lg hover:scale-110 transition-transform cursor-pointer">
+              <label className="absolute -bottom-2 -right-2 p-2 bg-primary text-primary-foreground rounded-xl shadow-lg hover:scale-110 transition-transform cursor-pointer">
                 <Camera size={20} />
                 <input
                   type="file"
@@ -238,9 +238,9 @@ export default function ProfilePage() {
             <div className="pb-4 space-y-1">
               <h1 className="text-3xl md:text-4xl font-black tracking-tight flex items-center gap-3">
                 {profile.full_name || "InfoM4th Member"}
-                <ShieldCheck className="text-blue-500" size={24} />
+                <ShieldCheck className="text-primary" size={24} />
               </h1>
-              <p className="text-zinc-400 font-medium">{profile.title || "Member"}</p>
+              <p className="text-muted-foreground font-medium">{profile.title || "Member"}</p>
             </div>
           </div>
 
@@ -248,7 +248,7 @@ export default function ProfilePage() {
             {!isEditing ? (
               <Button
                 onClick={startEditing}
-                className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border-zinc-700 flex items-center gap-2 rounded-full px-6"
+                className="bg-card/70 hover:bg-card backdrop-blur-md text-foreground border-border flex items-center gap-2 rounded-full px-6"
               >
                 <Edit2 size={16} />
                 Edit Profile
@@ -257,7 +257,7 @@ export default function ProfilePage() {
               <>
                 <Button
                   onClick={saveProfile}
-                  className="bg-white text-black hover:bg-zinc-200 rounded-full px-6 flex items-center gap-2"
+                  className="bg-primary text-primary-foreground hover:bg-accent rounded-full px-6 flex items-center gap-2"
                   disabled={isSaving}
                 >
                   <Save size={16} />
@@ -266,7 +266,7 @@ export default function ProfilePage() {
                 <Button
                   variant="ghost"
                   onClick={cancelEditing}
-                  className="text-zinc-300 hover:text-white rounded-full px-4"
+                  className="text-muted-foreground hover:text-foreground rounded-full px-4"
                 >
                   <X size={16} />
                 </Button>
@@ -276,7 +276,7 @@ export default function ProfilePage() {
         </div>
 
         {statusMessage && (
-          <div className="border border-zinc-800 bg-zinc-900/60 text-zinc-300 text-sm px-4 py-3 rounded-2xl">
+          <div className="border border-border/70 bg-card/70 text-muted-foreground text-sm px-4 py-3 rounded-2xl">
             {statusMessage}
           </div>
         )}
@@ -285,17 +285,17 @@ export default function ProfilePage() {
         <div className="grid md:grid-cols-3 gap-12 mt-20">
           <div className="space-y-8">
             <div className="space-y-6">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Contact Info</h3>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Contact Info</h3>
               <div className="space-y-4">
-                <div className="flex items-center gap-3 text-zinc-300">
-                  <Mail size={18} className="text-zinc-500" />
+                <div className="flex items-center gap-3 text-foreground/80">
+                  <Mail size={18} className="text-muted-foreground" />
                   {profile.email}
                 </div>
-                <div className="flex items-center gap-3 text-zinc-300">
-                  <MapPin size={18} className="text-zinc-500" />
+                <div className="flex items-center gap-3 text-foreground/80">
+                  <MapPin size={18} className="text-muted-foreground" />
                   {isEditing ? (
                     <input
-                      className="bg-transparent border-b border-zinc-700 focus:border-white outline-none"
+                      className="bg-transparent border-b border-border focus:border-primary outline-none"
                       value={formState?.location ?? ""}
                       onChange={(event) =>
                         setFormState((prev) => (prev ? { ...prev, location: event.target.value } : prev))
@@ -306,11 +306,11 @@ export default function ProfilePage() {
                     profile.location || "Location not set"
                   )}
                 </div>
-                <div className="flex items-center gap-3 text-zinc-300">
-                  <Clock size={18} className="text-zinc-500" />
+                <div className="flex items-center gap-3 text-foreground/80">
+                  <Clock size={18} className="text-muted-foreground" />
                   {isEditing ? (
                     <input
-                      className="bg-transparent border-b border-zinc-700 focus:border-white outline-none"
+                      className="bg-transparent border-b border-border focus:border-primary outline-none"
                       value={formState?.timezone ?? ""}
                       onChange={(event) =>
                         setFormState((prev) => (prev ? { ...prev, timezone: event.target.value } : prev))
@@ -325,12 +325,12 @@ export default function ProfilePage() {
             </div>
 
             <div className="space-y-6">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Social Synergy</h3>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Social Synergy</h3>
               <div className="flex flex-wrap gap-2">
                 {socials.map((label) => (
                   <Badge
                     key={label}
-                    className="bg-zinc-800 text-zinc-300 border-zinc-700 py-1.5 px-4 rounded-full"
+                    className="bg-muted text-foreground border-border py-1.5 px-4 rounded-full"
                   >
                     {label}
                   </Badge>
@@ -340,14 +340,14 @@ export default function ProfilePage() {
           </div>
 
           <div className="md:col-span-2 space-y-8">
-            <Card className="bg-zinc-900 border-zinc-800 rounded-3xl overflow-hidden">
+            <Card className="bg-card border-border rounded-3xl overflow-hidden">
               <CardHeader>
-                <CardTitle className="text-white text-xl">Biography</CardTitle>
+                <CardTitle className="text-foreground text-xl">Biography</CardTitle>
               </CardHeader>
-              <CardContent className="text-zinc-400 leading-relaxed text-lg">
+              <CardContent className="text-muted-foreground leading-relaxed text-lg">
                 {isEditing ? (
                   <textarea
-                    className="w-full min-h-[140px] bg-transparent border border-zinc-700 rounded-2xl p-4 focus:border-white outline-none"
+                    className="w-full min-h-[140px] bg-transparent border border-border rounded-2xl p-4 focus:border-primary outline-none"
                     value={formState?.bio ?? ""}
                     onChange={(event) =>
                       setFormState((prev) => (prev ? { ...prev, bio: event.target.value } : prev))
@@ -366,10 +366,10 @@ export default function ProfilePage() {
                 { label: "Projects Completed", value: profile.projects_completed ?? 0 },
                 { label: "Community Rank", value: profile.rank ?? "Member" },
               ].map((stat) => (
-                <Card key={stat.label} className="bg-zinc-900 border-zinc-800 rounded-2xl">
+                <Card key={stat.label} className="bg-card border-border rounded-2xl">
                   <CardContent className="pt-6">
-                    <p className="text-zinc-500 text-sm font-medium">{stat.label}</p>
-                    <p className="text-3xl font-black text-white mt-1">{stat.value}</p>
+                    <p className="text-muted-foreground text-sm font-medium">{stat.label}</p>
+                    <p className="text-3xl font-black text-foreground mt-1">{stat.value}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -382,8 +382,8 @@ export default function ProfilePage() {
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-125 hover:scale-100"
               />
-              <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                <span className="text-white font-bold text-xl tracking-widest uppercase">View Portfolio</span>
+              <div className="absolute inset-0 bg-[hsl(var(--foreground))]/60 flex items-center justify-center">
+                <span className="text-background font-bold text-xl tracking-widest uppercase">View Portfolio</span>
               </div>
             </div>
           </div>

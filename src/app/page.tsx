@@ -190,7 +190,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="border-4 border-black bg-white p-8 neo-shadow hover:neo-shadow-hover group cursor-pointer"
+                className="border-4 border-border bg-card p-8 neo-shadow hover:neo-shadow-hover group cursor-pointer"
               >
                 <Icon
                   className="w-16 h-16 mb-6 group-hover:text-primary transition-colors"
@@ -208,7 +208,7 @@ export default function HomePage() {
 
       {/* Highlights Grid */}
       <section className="px-6 md:px-12 max-w-7xl mx-auto mb-32">
-        <h2 className="text-6xl md:text-7xl font-display font-black uppercase mb-12 border-b-4 border-black pb-4">
+        <h2 className="text-6xl md:text-7xl font-display font-black uppercase mb-12 border-b-4 border-border pb-4">
           Why Join?
         </h2>
 
@@ -222,7 +222,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-secondary border-4 border-black p-8 neo-shadow hover:neo-shadow-hover group"
+                className="bg-secondary border-4 border-border p-8 neo-shadow hover:neo-shadow-hover group"
               >
                 <Icon
                   size={40}
@@ -252,13 +252,13 @@ export default function HomePage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="border-4 border-black bg-white p-8 neo-shadow"
+              className="border-4 border-border bg-card p-8 neo-shadow"
             >
               <div className="text-5xl text-primary font-display mb-4">"</div>
               <p className="text-xl font-medium mb-6 leading-relaxed italic">
                 {testimonial.text}
               </p>
-              <div className="border-t-2 border-black pt-4">
+              <div className="border-t-2 border-border pt-4">
                 <p className="font-display font-bold text-lg">
                   {testimonial.author}
                 </p>

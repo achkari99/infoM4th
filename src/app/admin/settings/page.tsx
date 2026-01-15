@@ -110,18 +110,18 @@ export default function AdminSettingsPage() {
 
   if (sessionLoading || isLoading) {
     return (
-      <div className="p-8 max-w-7xl mx-auto text-zinc-500 uppercase tracking-[0.3em] text-xs">Loading settings</div>
+      <div className="p-8 max-w-7xl mx-auto text-muted-foreground uppercase tracking-[0.3em] text-xs">Loading settings</div>
     );
   }
 
   if (!isAuthorized) {
     return (
       <div className="p-8 max-w-3xl mx-auto">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-white">Access restricted</CardTitle>
+            <CardTitle className="text-foreground">Access restricted</CardTitle>
           </CardHeader>
-          <CardContent className="text-zinc-400">
+          <CardContent className="text-muted-foreground">
             Admin access is required to adjust settings.
           </CardContent>
         </Card>
@@ -131,68 +131,68 @@ export default function AdminSettingsPage() {
 
   return (
     <div className="p-8 max-w-5xl mx-auto space-y-8">
-      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-zinc-500">
+      <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
         <span className="h-1 w-10 bg-primary/70" />
         Admin Controls
       </div>
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Settings</h1>
-          <p className="text-zinc-500">Personalize your admin presence.</p>
+          <p className="text-muted-foreground">Personalize your admin presence.</p>
         </div>
         <Settings size={20} className="text-primary" />
       </div>
 
       {statusMessage && (
-        <div className="border border-zinc-800 bg-zinc-900/60 text-zinc-300 text-sm px-4 py-3 rounded-2xl">
+        <div className="border border-border bg-card/60 text-muted-foreground text-sm px-4 py-3 rounded-2xl">
           {statusMessage}
         </div>
       )}
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-white">Profile Control</CardTitle>
+          <CardTitle className="text-foreground">Profile Control</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="text-xs uppercase tracking-[0.2em] text-zinc-500">Name</label>
+              <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Name</label>
               <Input
                 value={profile?.full_name ?? ""}
                 onChange={(event) =>
                   setProfile((prev) => (prev ? { ...prev, full_name: event.target.value } : prev))
                 }
-                className="mt-2 bg-zinc-950 border-zinc-800 text-white"
+                className="mt-2 bg-background border-border text-foreground"
               />
             </div>
             <div>
-              <label className="text-xs uppercase tracking-[0.2em] text-zinc-500">Title</label>
+              <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Title</label>
               <Input
                 value={profile?.title ?? ""}
                 onChange={(event) =>
                   setProfile((prev) => (prev ? { ...prev, title: event.target.value } : prev))
                 }
-                className="mt-2 bg-zinc-950 border-zinc-800 text-white"
+                className="mt-2 bg-background border-border text-foreground"
               />
             </div>
             <div>
-              <label className="text-xs uppercase tracking-[0.2em] text-zinc-500">Location</label>
+              <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Location</label>
               <Input
                 value={profile?.location ?? ""}
                 onChange={(event) =>
                   setProfile((prev) => (prev ? { ...prev, location: event.target.value } : prev))
                 }
-                className="mt-2 bg-zinc-950 border-zinc-800 text-white"
+                className="mt-2 bg-background border-border text-foreground"
               />
             </div>
             <div>
-              <label className="text-xs uppercase tracking-[0.2em] text-zinc-500">Timezone</label>
+              <label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Timezone</label>
               <Input
                 value={profile?.timezone ?? ""}
                 onChange={(event) =>
                   setProfile((prev) => (prev ? { ...prev, timezone: event.target.value } : prev))
                 }
-                className="mt-2 bg-zinc-950 border-zinc-800 text-white"
+                className="mt-2 bg-background border-border text-foreground"
               />
             </div>
           </div>
@@ -204,7 +204,7 @@ export default function AdminSettingsPage() {
             >
               {isSaving ? "Saving?" : "Save changes"}
             </Button>
-            <Button variant="ghost" className="text-zinc-400" onClick={signOut}>
+            <Button variant="ghost" className="text-muted-foreground" onClick={signOut}>
               Sign out
             </Button>
           </div>

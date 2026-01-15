@@ -72,7 +72,7 @@ export default function NewsPage() {
               News
             </h1>
           </div>
-          <div className="border-4 border-black bg-white p-6 neo-shadow max-w-md">
+          <div className="border-4 border-border bg-card p-6 neo-shadow max-w-md">
             <div className="text-xs font-mono uppercase tracking-[0.2em] text-foreground/70 mb-2">Quick Pulse</div>
             <p className="text-lg font-bold">
               {featured?.summary ??
@@ -82,11 +82,11 @@ export default function NewsPage() {
         </motion.div>
 
         {error && (
-          <div className="border-4 border-black bg-white p-6 neo-shadow mb-10 text-lg">{error}</div>
+          <div className="border-4 border-border bg-card p-6 neo-shadow mb-10 text-lg">{error}</div>
         )}
 
         {isLoading ? (
-          <div className="border-4 border-black bg-white p-8 neo-shadow animate-pulse">Loading news?</div>
+          <div className="border-4 border-border bg-card p-8 neo-shadow animate-pulse">Loading news?</div>
         ) : (
           <>
             <motion.section
@@ -124,7 +124,7 @@ export default function NewsPage() {
                 )}
               </div>
 
-              <div className="border-4 border-black bg-white p-10 neo-shadow flex flex-col justify-between">
+              <div className="border-4 border-border bg-card p-10 neo-shadow flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-3 text-sm uppercase tracking-[0.3em] font-mono mb-6">
                     <Megaphone className="text-primary" size={20} />
@@ -150,14 +150,14 @@ export default function NewsPage() {
                   <div className="text-xs font-mono uppercase tracking-[0.35em] text-foreground/60 mb-3">Signal Feed</div>
                   <h2 className="text-5xl md:text-6xl font-display font-black uppercase">Latest Drops</h2>
                 </div>
-                <div className="inline-flex items-center gap-3 border-2 border-black bg-white px-4 py-2 text-xs font-mono uppercase tracking-[0.2em]">
+                <div className="inline-flex items-center gap-3 border-2 border-border bg-card px-4 py-2 text-xs font-mono uppercase tracking-[0.2em]">
                   <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                   Last 60 days
                 </div>
               </div>
 
               {updates.length === 0 ? (
-                <div className="border-4 border-black bg-white p-8 neo-shadow">
+                <div className="border-4 border-border bg-card p-8 neo-shadow">
                   No additional stories yet. Publish the first update to get this feed moving.
                 </div>
               ) : (
@@ -183,7 +183,7 @@ export default function NewsPage() {
                           </div>
                         </div>
 
-                        <article className="relative border-4 border-black bg-white p-6 md:p-8 shadow-[6px_6px_0_0_#000]">
+                        <article className="relative border-4 border-border bg-card p-6 md:p-8 shadow-[6px_6px_0_0_#000]">
                           <div className="absolute -top-3 left-6 bg-primary text-foreground px-3 py-1 text-xs font-bold uppercase">
                             {item.category}
                           </div>

@@ -21,7 +21,7 @@ export default function NotFound() {
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="z-10 bg-white border-4 border-black p-8 neo-shadow-lg rotate-2 max-w-lg"
+        className="z-10 bg-card border-4 border-border p-8 neo-shadow-lg rotate-2 max-w-lg"
       >
         <h2 className="text-4xl font-bold uppercase mb-4">You're Lost.</h2>
         <p className="text-xl mb-8 font-medium">
