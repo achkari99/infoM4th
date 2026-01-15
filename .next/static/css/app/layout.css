@@ -1437,6 +1437,9 @@
   .border-\[--color-border\] {
     border-color: --color-border;
   }
+  .border-accent {
+    border-color: hsl(var(--accent));
+  }
   .border-black {
     border-color: var(--color-black);
   }
@@ -1462,6 +1465,12 @@
     border-color: hsl(var(--border));
     @supports (color: color-mix(in lab, red, red)) {
       border-color: color-mix(in oklab, hsl(var(--border)) 50%, transparent);
+    }
+  }
+  .border-border\/70 {
+    border-color: hsl(var(--border));
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, hsl(var(--border)) 70%, transparent);
     }
   }
   .border-destructive {
@@ -1508,6 +1517,9 @@
   }
   .border-purple-400 {
     border-color: var(--color-purple-400);
+  }
+  .border-secondary {
+    border-color: hsl(var(--secondary));
   }
   .border-transparent {
     border-color: transparent;
@@ -1560,6 +1572,12 @@
   .bg-accent {
     background-color: hsl(var(--accent));
   }
+  .bg-accent\/15 {
+    background-color: hsl(var(--accent));
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, hsl(var(--accent)) 15%, transparent);
+    }
+  }
   .bg-accent\/20 {
     background-color: hsl(var(--accent));
     @supports (color: color-mix(in lab, red, red)) {
@@ -1610,6 +1628,18 @@
   }
   .bg-card {
     background-color: hsl(var(--card));
+  }
+  .bg-card\/60 {
+    background-color: hsl(var(--card));
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, hsl(var(--card)) 60%, transparent);
+    }
+  }
+  .bg-card\/70 {
+    background-color: hsl(var(--card));
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, hsl(var(--card)) 70%, transparent);
+    }
   }
   .bg-destructive {
     background-color: hsl(var(--destructive));
@@ -1692,6 +1722,18 @@
   .bg-secondary {
     background-color: hsl(var(--secondary));
   }
+  .bg-secondary\/20 {
+    background-color: hsl(var(--secondary));
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, hsl(var(--secondary)) 20%, transparent);
+    }
+  }
+  .bg-secondary\/30 {
+    background-color: hsl(var(--secondary));
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, hsl(var(--secondary)) 30%, transparent);
+    }
+  }
   .bg-transparent {
     background-color: transparent;
   }
@@ -1758,6 +1800,10 @@
   .bg-\[linear-gradient\(135deg\,_rgba\(0\,0\,0\,0\.03\)_0\%\,_rgba\(0\,0\,0\,0\)_55\%\)\] {
     background-image: linear-gradient(135deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 55%);
   }
+  .from-\[hsl\(var\(--foreground\)\)\] {
+    --tw-gradient-from: hsl(var(--foreground));
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
   .from-black {
     --tw-gradient-from: var(--color-black);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -1776,6 +1822,11 @@
   .from-transparent {
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .via-\[hsl\(var\(--foreground\)\)\/0\.2\] {
+    --tw-gradient-via: hsl(var(--foreground))/0.2;
+    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-via-stops);
   }
   .via-black\/20 {
     --tw-gradient-via: color-mix(in srgb, #000 20%, transparent);
@@ -2148,6 +2199,12 @@
       color: color-mix(in oklab, hsl(var(--background)) 70%, transparent);
     }
   }
+  .text-background\/80 {
+    color: hsl(var(--background));
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, hsl(var(--background)) 80%, transparent);
+    }
+  }
   .text-black {
     color: var(--color-black);
   }
@@ -2226,6 +2283,12 @@
   .text-muted-foreground {
     color: hsl(var(--muted-foreground));
   }
+  .text-muted-foreground\/80 {
+    color: hsl(var(--muted-foreground));
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, hsl(var(--muted-foreground)) 80%, transparent);
+    }
+  }
   .text-pink-600 {
     color: var(--color-pink-600);
   }
@@ -2246,6 +2309,9 @@
   }
   .text-purple-900 {
     color: var(--color-purple-900);
+  }
+  .text-secondary {
+    color: hsl(var(--secondary));
   }
   .text-secondary-foreground {
     color: hsl(var(--secondary-foreground));
@@ -3122,6 +3188,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-zinc-900);
+      }
+    }
+  }
+  .hover\:text-accent {
+    &:hover {
+      @media (hover: hover) {
+        color: hsl(var(--accent));
       }
     }
   }
@@ -5091,47 +5164,47 @@
   }
 }
 :root {
-  --background: 60 30% 96%;
-  --foreground: 0 0% 10%;
-  --card: 60 30% 96%;
-  --card-foreground: 0 0% 10%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
-  --primary: 250 100% 60%;
+  --background: 60 15% 95%;
+  --foreground: 199 76% 18%;
+  --card: 60 2% 87%;
+  --card-foreground: 199 76% 18%;
+  --popover: 60 2% 87%;
+  --popover-foreground: 199 76% 18%;
+  --primary: 190 100% 39%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 60 100% 60%;
-  --secondary-foreground: 0 0% 10%;
-  --muted: 0 0% 90%;
-  --muted-foreground: 0 0% 40%;
-  --accent: 330 100% 60%;
+  --secondary: 191 80% 56%;
+  --secondary-foreground: 199 76% 18%;
+  --muted: 60 8% 92%;
+  --muted-foreground: 199 40% 32%;
+  --accent: 190 100% 30%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 100% 50%;
   --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 10%;
-  --input: 0 0% 10%;
-  --ring: 250 100% 60%;
+  --border: 192 82% 24%;
+  --input: 192 82% 24%;
+  --ring: 190 100% 39%;
   --radius: 0rem;
 }
 .dark {
-  --background: 0 0% 10%;
-  --foreground: 60 30% 96%;
-  --card: 0 0% 10%;
-  --card-foreground: 60 30% 96%;
-  --popover: 0 0% 10%;
-  --popover-foreground: 60 30% 96%;
-  --primary: 250 100% 70%;
-  --primary-foreground: 0 0% 10%;
-  --secondary: 60 100% 60%;
-  --secondary-foreground: 0 0% 10%;
-  --muted: 0 0% 20%;
-  --muted-foreground: 0 0% 60%;
-  --accent: 330 100% 70%;
-  --accent-foreground: 0 0% 10%;
+  --background: 199 76% 12%;
+  --foreground: 60 15% 95%;
+  --card: 199 70% 16%;
+  --card-foreground: 60 15% 95%;
+  --popover: 199 70% 16%;
+  --popover-foreground: 60 15% 95%;
+  --primary: 190 100% 46%;
+  --primary-foreground: 199 76% 12%;
+  --secondary: 191 80% 56%;
+  --secondary-foreground: 199 76% 12%;
+  --muted: 199 30% 22%;
+  --muted-foreground: 60 10% 70%;
+  --accent: 190 100% 34%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 100% 60%;
   --destructive-foreground: 0 0% 100%;
-  --border: 60 30% 96%;
-  --input: 60 30% 96%;
-  --ring: 250 100% 70%;
+  --border: 192 82% 24%;
+  --input: 192 82% 24%;
+  --ring: 190 100% 46%;
 }
 @layer base {
   * {

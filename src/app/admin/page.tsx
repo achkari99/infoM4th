@@ -158,20 +158,20 @@ export default function AdminPage() {
 
   if (sessionLoading || isLoading) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-zinc-500 uppercase tracking-[0.3em] text-xs">Loading admin system</div>
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-muted-foreground uppercase tracking-[0.3em] text-xs">Loading admin system</div>
       </div>
     );
   }
 
   if (!isAuthorized) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center p-6">
-        <Card className="bg-zinc-900 border-zinc-800 max-w-lg">
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-6">
+        <Card className="bg-card border-border max-w-lg">
           <CardHeader>
-            <CardTitle className="text-white">Access restricted</CardTitle>
+            <CardTitle className="text-foreground">Access restricted</CardTitle>
           </CardHeader>
-          <CardContent className="text-zinc-400">
+          <CardContent className="text-muted-foreground">
             This console is limited to admins. If you believe this is a mistake, contact the system owner.
           </CardContent>
         </Card>
@@ -180,50 +180,51 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8">
-      <div className="flex flex-col gap-6">
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="p-8 max-w-7xl mx-auto space-y-8">
+        <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
           <div className="space-y-2">
-            <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-zinc-500">
+            <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
               <span className="h-1 w-10 bg-primary/70" />
               Command Center
             </div>
             <h1 className="text-3xl font-bold">Admin Console</h1>
-            <p className="text-zinc-500">Calm oversight, quiet momentum.</p>
+            <p className="text-muted-foreground">Calm oversight, quiet momentum.</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-3 border border-zinc-800 rounded-full px-4 py-2 text-xs uppercase tracking-[0.25em] text-zinc-500">
+            <div className="hidden md:flex items-center gap-3 border border-border rounded-full px-4 py-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
               <Activity size={14} className="text-primary" />
               Live sync
-              <span className="text-zinc-600">
+              <span className="text-muted-foreground/80">
                 {lastSync
                   ? lastSync.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
                   : "Syncing"}
               </span>
             </div>
-            <Button className="bg-white text-black hover:bg-zinc-200 rounded-full px-6 flex items-center gap-2">
+            <Button className="bg-primary text-primary-foreground hover:bg-accent rounded-full px-6 flex items-center gap-2">
               <Plus size={18} />
               New Report
             </Button>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border border-zinc-900/80 bg-zinc-950/80 px-4 py-3 rounded-2xl">
-          <div className="flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-zinc-500">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border border-border/70 bg-card/70 px-4 py-3 rounded-2xl">
+          <div className="flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
             <span className="inline-flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
               Secure channel
             </span>
             <span className="hidden sm:inline">Admin visibility only</span>
           </div>
-          <div className="text-xs text-zinc-500">
+          <div className="text-xs text-muted-foreground">
             Last refresh: {lastSync ? lastSync.toLocaleString() : "Waiting for data"}
           </div>
         </div>
       </div>
 
       {statusMessage && (
-        <div className="border border-zinc-800 bg-zinc-900/60 text-zinc-300 text-sm px-4 py-3 rounded-2xl">
+        <div className="border border-border/70 bg-card/70 text-muted-foreground text-sm px-4 py-3 rounded-2xl">
           {statusMessage}
         </div>
       )}
@@ -236,14 +237,14 @@ export default function AdminPage() {
           { label: "Join Requests", value: stats.joinRequests, change: "" },
           { label: "System Health", value: stats.systemHealth, change: "Stable" },
         ].map((stat) => (
-          <Card key={stat.label} className="bg-zinc-900 border-zinc-800">
+          <Card key={stat.label} className="bg-card border-border">
             <CardHeader className="pb-2">
-              <span className="text-zinc-500 text-sm font-medium">{stat.label}</span>
+              <span className="text-muted-foreground text-sm font-medium">{stat.label}</span>
             </CardHeader>
             <CardContent>
               <div className="flex items-end justify-between">
-                <span className="text-2xl font-bold text-white">{stat.value}</span>
-                {stat.change && <span className="text-emerald-500 text-sm font-bold">{stat.change}</span>}
+                <span className="text-2xl font-bold text-foreground">{stat.value}</span>
+                {stat.change && <span className="text-accent text-sm font-bold">{stat.change}</span>}
               </div>
             </CardContent>
           </Card>
@@ -251,30 +252,30 @@ export default function AdminPage() {
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8">
-        <Card className="lg:col-span-2 bg-zinc-900 border-zinc-800 min-h-[400px]">
+        <Card className="lg:col-span-2 bg-card border-border min-h-[400px]">
           <CardHeader>
-            <CardTitle className="text-white">Recent Activity</CardTitle>
+            <CardTitle className="text-foreground">Recent Activity</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
               {activity.length === 0 ? (
-                <div className="text-zinc-500">No recent activity yet.</div>
+                <div className="text-muted-foreground">No recent activity yet.</div>
               ) : (
                 activity.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between border-b border-zinc-800 pb-4 last:border-0 last:pb-0"
+                    className="flex items-center justify-between border-b border-border/70 pb-4 last:border-0 last:pb-0"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center">
-                        <Users className="text-zinc-400" size={20} />
+                      <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
+                        <Users className="text-accent" size={20} />
                       </div>
                       <div>
-                        <p className="font-medium text-white">{item.title}</p>
-                        <p className="text-sm text-zinc-500">{item.detail}</p>
+                        <p className="font-medium text-foreground">{item.title}</p>
+                        <p className="text-sm text-muted-foreground">{item.detail}</p>
                       </div>
                     </div>
-                    <span className="text-xs text-zinc-500">{item.timestamp}</span>
+                    <span className="text-xs text-muted-foreground">{item.timestamp}</span>
                   </div>
                 ))
               )}
@@ -283,40 +284,40 @@ export default function AdminPage() {
         </Card>
 
         <div className="space-y-8">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader>
-              <CardTitle className="text-white">Join Requests</CardTitle>
+              <CardTitle className="text-foreground">Join Requests</CardTitle>
             </CardHeader>
             <CardContent>
               {joinRequests.length === 0 ? (
-                <div className="text-zinc-500">No new requests yet.</div>
+                <div className="text-muted-foreground">No new requests yet.</div>
               ) : (
                 <div className="space-y-4">
                   {joinRequests.map((request) => (
-                    <div key={request.id} className="border-b border-zinc-800 pb-4 last:border-0 last:pb-0">
+                    <div key={request.id} className="border-b border-border/70 pb-4 last:border-0 last:pb-0">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-white font-medium">{request.name}</p>
-                          <p className="text-sm text-zinc-500">{request.major}</p>
+                          <p className="text-foreground font-medium">{request.name}</p>
+                          <p className="text-sm text-muted-foreground">{request.major}</p>
                         </div>
-                        <span className="text-xs text-zinc-500">
+                        <span className="text-xs text-muted-foreground">
                           {new Date(request.created_at).toLocaleDateString()}
                         </span>
                       </div>
-                      <p className="text-sm text-zinc-400 mt-2">{request.message}</p>
+                      <p className="text-sm text-muted-foreground mt-2">{request.message}</p>
                       <div className="mt-3 flex flex-wrap items-center gap-3">
-                        <span className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+                        <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                           {request.status ?? "new"}
                         </span>
                         <button
-                          className="text-xs uppercase tracking-[0.2em] text-emerald-300 hover:text-emerald-200 transition-colors disabled:opacity-40"
+                          className="text-xs uppercase tracking-[0.2em] text-primary hover:text-accent transition-colors disabled:opacity-40"
                           onClick={() => updateJoinStatus(request.id, "approved")}
                           disabled={updatingRequestId === request.id}
                         >
                           Approve
                         </button>
                         <button
-                          className="text-xs uppercase tracking-[0.2em] text-zinc-400 hover:text-white transition-colors disabled:opacity-40"
+                          className="text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors disabled:opacity-40"
                           onClick={() => updateJoinStatus(request.id, "declined")}
                           disabled={updatingRequestId === request.id}
                         >
@@ -324,7 +325,7 @@ export default function AdminPage() {
                         </button>
                         <a
                           href={`mailto:${request.email}`}
-                          className="text-xs uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors"
+                          className="text-xs uppercase tracking-[0.2em] text-accent hover:text-foreground transition-colors"
                         >
                           Reply
                         </a>
@@ -343,12 +344,13 @@ export default function AdminPage() {
               fill
               className="object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-6 flex flex-col justify-end">
-              <h3 className="text-xl font-bold text-white">System Pulse</h3>
-              <p className="text-zinc-400 text-sm">All regions operational.</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--foreground))] via-[hsl(var(--foreground))/0.2] to-transparent p-6 flex flex-col justify-end">
+              <h3 className="text-xl font-bold text-background">System Pulse</h3>
+              <p className="text-background/80 text-sm">All regions operational.</p>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

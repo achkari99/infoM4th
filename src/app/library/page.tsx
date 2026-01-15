@@ -55,9 +55,9 @@ export default function Library() {
   }, []);
 
   const difficultyColor = {
-    Beginner: "bg-green-500",
-    Intermediate: "bg-yellow-500",
-    Advanced: "bg-red-500",
+    Beginner: "bg-secondary",
+    Intermediate: "bg-primary",
+    Advanced: "bg-accent",
   };
 
   const totalStats = useMemo(
@@ -251,7 +251,7 @@ export default function Library() {
           initial={{ scale: 0.95, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          className="bg-primary text-white p-12 md:p-16 border-4 border-black neo-shadow-lg text-center"
+          className="bg-primary text-primary-foreground p-12 md:p-16 border-4 border-black neo-shadow-lg text-center"
         >
           <Lock size={48} className="mx-auto mb-6" />
           <h2 className="text-5xl md:text-6xl font-display font-black uppercase mb-6">Exclusive Access</h2>

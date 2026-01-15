@@ -19,17 +19,17 @@ interface EventRecord {
 }
 
 const categoryColors = {
-  Workshop: "bg-blue-100 text-blue-900 border-blue-400",
-  Hackathon: "bg-purple-100 text-purple-900 border-purple-400",
-  Talk: "bg-green-100 text-green-900 border-green-400",
-  Social: "bg-pink-100 text-pink-900 border-pink-400",
+  Workshop: "bg-secondary/30 text-foreground border-primary",
+  Hackathon: "bg-primary/20 text-foreground border-accent",
+  Talk: "bg-accent/15 text-foreground border-accent",
+  Social: "bg-secondary/20 text-foreground border-secondary",
 };
 
 const categoryIconColors = {
-  Workshop: "text-blue-600",
-  Hackathon: "text-purple-600",
-  Talk: "text-green-600",
-  Social: "text-pink-600",
+  Workshop: "text-primary",
+  Hackathon: "text-accent",
+  Talk: "text-primary",
+  Social: "text-secondary",
 };
 
 export default function Events() {
@@ -83,13 +83,13 @@ export default function Events() {
         </motion.div>
 
         {error && (
-          <div className="border-4 border-black bg-white p-6 neo-shadow mb-10 text-lg">
+          <div className="border-4 border-border bg-card p-6 neo-shadow mb-10 text-lg">
             {error}
           </div>
         )}
 
         {isLoading ? (
-          <div className="border-4 border-black bg-white p-8 neo-shadow animate-pulse">Loading events?</div>
+          <div className="border-4 border-border bg-card p-8 neo-shadow animate-pulse">Loading events?</div>
         ) : (
           <>
             {/* Upcoming Events */}
@@ -98,13 +98,13 @@ export default function Events() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-6xl md:text-7xl font-display font-black uppercase mb-12 border-b-4 border-black pb-4"
+                className="text-6xl md:text-7xl font-display font-black uppercase mb-12 border-b-4 border-border pb-4"
               >
                 Upcoming
               </motion.h2>
 
               {upcomingEvents.length === 0 ? (
-                <div className="border-4 border-black bg-white p-8 neo-shadow">
+                <div className="border-4 border-border bg-card p-8 neo-shadow">
                   No upcoming events yet. Check back soon.
                 </div>
               ) : (
@@ -116,7 +116,7 @@ export default function Events() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.08 }}
-                      className="border-4 border-black bg-white p-8 neo-shadow hover:neo-shadow-hover group cursor-pointer relative overflow-hidden"
+                      className="border-4 border-border bg-card p-8 neo-shadow hover:neo-shadow-hover group cursor-pointer relative overflow-hidden"
                     >
                       <div className="absolute top-0 left-0 h-full w-1 bg-primary" />
 
@@ -129,7 +129,7 @@ export default function Events() {
                             </h3>
                             <span
                               className={`px-4 py-2 rounded border-2 whitespace-nowrap font-bold text-sm uppercase ${
-                                categoryColors[event.category] ?? "bg-gray-100 text-gray-900 border-gray-400"
+                                categoryColors[event.category] ?? "bg-muted text-foreground border-border"
                               }`}
                             >
                               {event.category}
@@ -145,7 +145,7 @@ export default function Events() {
                         </div>
 
                         {/* Right: Date, Time, Location */}
-                        <div className="bg-gray-50 border-2 border-black p-6 space-y-4">
+                        <div className="bg-background border-2 border-border p-6 space-y-4">
                           <div>
                             <div className="text-xs font-mono uppercase opacity-60 mb-1">Date</div>
                             <div className="flex items-center gap-2 text-lg font-bold">
@@ -179,7 +179,7 @@ export default function Events() {
             {/* Past Events */}
             {pastEvents.length > 0 && (
               <section className="mb-20">
-                <h2 className="text-6xl md:text-7xl font-display font-black uppercase mb-12 border-b-4 border-black pb-4 opacity-60">
+                <h2 className="text-6xl md:text-7xl font-display font-black uppercase mb-12 border-b-4 border-border pb-4 opacity-60">
                   Past Events
                 </h2>
 
@@ -191,7 +191,7 @@ export default function Events() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
-                      className="border-2 border-gray-400 bg-gray-50 p-6 opacity-70 hover:opacity-100 transition-opacity"
+                      className="border-2 border-border bg-card/60 p-6 opacity-70 hover:opacity-100 transition-opacity"
                     >
                       <h3 className="text-2xl font-display font-bold uppercase mb-3">{event.title}</h3>
                       <p className="text-sm font-mono opacity-60 mb-2">{event.date}</p>
@@ -209,7 +209,7 @@ export default function Events() {
           initial={{ scale: 0.95, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          className="bg-accent text-white p-12 md:p-16 border-4 border-black neo-shadow-lg text-center"
+          className="bg-primary text-primary-foreground p-12 md:p-16 border-4 border-border neo-shadow-lg text-center"
         >
           <h2 className="text-5xl md:text-6xl font-display font-black uppercase mb-6">Don't Miss Out</h2>
           <p className="text-xl md:text-2xl mb-8">
