@@ -17,7 +17,7 @@ interface LearningPath {
   students: number | null;
 }
 
-const categoryIconMap: Record<string, JSX.Element> = {
+const categoryIconMap: Record<string, React.ReactElement> = {
   Web: <Code2 size={32} />,
   "Core CS": <Zap size={32} />,
   Math: <Calculator size={32} />,

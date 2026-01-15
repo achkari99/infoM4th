@@ -1,7 +1,6 @@
 {
   "include": [
     "next-env.d.ts",
-    "server/**/*",
     "shared/**/*",
     "src/**/*",
     ".next/types/**/*.ts"
@@ -10,9 +9,15 @@
     "node_modules",
     "build",
     "dist",
+    "_legacy_client/**/*",
+    "_legacy_script/**/*",
+    "_legacy_vite/**/*",
+    "src/_legacy_app/**/*",
+    "src/_legacy_pages/**/*",
     "**/*.test.ts"
   ],
   "compilerOptions": {
+    "composite": true,
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",
     "noEmit": true,
@@ -30,7 +35,9 @@
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "types": [
-      "node"
+      "node",
+      "react",
+      "react-dom"
     ],
     "paths": {
       "@/*": [

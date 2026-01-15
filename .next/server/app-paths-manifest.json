@@ -1,8 +1,23 @@
 {
+  "/api/health/route": "app/api/health/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/events/page": "app/events/page.js",
+  "/join/page": "app/join/page.js",
   "/library/page": "app/library/page.js",
-  "/team/page": "app/team/page.js",
-  "/profile/page": "app/profile/page.js",
+  "/login/page": "app/login/page.js",
+  "/news/page": "app/news/page.js",
   "/page": "app/page.js",
+  "/news/[slug]/page": "app/news/[slug]/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/register/page": "app/register/page.js",
+  "/team/page": "app/team/page.js",
+  "/admin/analytics/page": "app/admin/analytics/page.js",
+  "/admin/content/page": "app/admin/content/page.js",
+  "/admin/notifications/page": "app/admin/notifications/page.js",
+  "/admin/audit/page": "app/admin/audit/page.js",
   "/admin/page": "app/admin/page.js",
-  "/admin/users/page": "app/admin/users/page.js"
+  "/admin/users/page": "app/admin/users/page.js",
+  "/admin/settings/page": "app/admin/settings/page.js"
 }
