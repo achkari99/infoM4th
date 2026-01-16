@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Marquee from "@/components/ui/marquee";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import {
   ArrowRight,
   Code2,
@@ -13,9 +15,18 @@ import {
   Sparkles,
 } from "lucide-react";
 import abstractImage from "@assets/generated_images/logo.png";
+import abstractImageDark from "@assets/generated_images/logo_black.png";
 import abstractImage2 from "@assets/generated_images/abstract_3d_geometric_shape_pop_art_style_variant.png";
+import abstractImage2Dark from "@assets/generated_images/abstract_3d_geometric_shape_pop_art_style_variant_black.png";
 
 export default function HomePage() {
+  const { resolvedTheme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const pillars = [
     {
       icon: Code2,
@@ -82,9 +93,13 @@ export default function HomePage() {
       <section className="relative min-h-[70vh] flex flex-col justify-center items-center px-6 mb-20">
         {/* Floating Abstract Elements */}
         <motion.img
-          src={abstractImage.src}
+          src={
+            isMounted && resolvedTheme === "dark"
+              ? abstractImageDark.src
+              : abstractImage.src
+          }
           alt="Abstract 3D Shape"
-          className="absolute top-10 right-[10%] w-48 md:w-80 z-0 pointer-events-none mix-blend-multiply opacity-70"
+          className="absolute top-[calc(2.5rem-85px)] right-[calc(10%-120px)] w-48 md:w-80 z-20 pointer-events-none mix-blend-normal"
           animate={{
             y: [0, -20, 0],
             rotate: [0, 8, 0],
@@ -97,9 +112,13 @@ export default function HomePage() {
         />
 
         <motion.img
-          src={abstractImage2.src}
+          src={
+            isMounted && resolvedTheme === "dark"
+              ? abstractImage2Dark.src
+              : abstractImage2.src
+          }
           alt="Abstract 3D Shape"
-          className="absolute bottom-10 left-[5%] w-40 md:w-60 z-0 pointer-events-none mix-blend-multiply opacity-70"
+          className="absolute bottom-10 left-[5%] w-40 md:w-60 z-20 pointer-events-none mix-blend-normal"
           animate={{
             y: [0, 30, 0],
             rotate: [0, -12, 0],
@@ -112,7 +131,7 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative z-10 text-center">
+        <div className="relative text-center">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -130,12 +149,13 @@ export default function HomePage() {
             transition={{ duration: 0.8, ease: "circOut" }}
             className="text-[10vw] leading-[0.9] font-display font-black uppercase tracking-tighter text-foreground mb-4"
           >
-            Where Code
+            Where{" "}
+            <span className="relative z-10">Code</span>
             <br />
             <span className="text-stroke hover:text-primary transition-colors cursor-pointer">
               Meets
             </span>{" "}
-            <span className="text-stroke hover:text-primary transition-colors cursor-pointer">
+            <span className="relative z-30 text-stroke hover:text-primary transition-colors cursor-pointer">
               Thinking
             </span>
           </motion.h1>
