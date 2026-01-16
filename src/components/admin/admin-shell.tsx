@@ -82,41 +82,51 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
       ]);
 
       const nextResults: SearchResult[] = [
-        ...(profiles ?? []).map((item) => ({
-          id: item.id,
-          title: item.full_name || item.email || "Unnamed user",
-          subtitle: item.email || undefined,
-          href: "/admin/users",
-          category: "Users",
-        })),
-        ...(joins ?? []).map((item) => ({
-          id: item.id,
-          title: item.name || item.email || "Join request",
-          subtitle: item.major || item.status || undefined,
-          href: "/admin",
-          category: "Join Requests",
-        })),
-        ...(events ?? []).map((item) => ({
-          id: item.id,
-          title: item.title,
-          subtitle: item.date || undefined,
-          href: "/admin/content",
-          category: "Events",
-        })),
-        ...(news ?? []).map((item) => ({
-          id: item.id,
-          title: item.title,
-          subtitle: item.date || undefined,
-          href: item.slug ? `/news/${item.slug}` : "/admin/content",
-          category: "News",
-        })),
-        ...(library ?? []).map((item) => ({
-          id: item.id,
-          title: item.title,
-          subtitle: item.category || undefined,
-          href: "/admin/content",
-          category: "Library",
-        })),
+        ...(profiles ?? []).map(
+          (item): SearchResult => ({
+            id: String(item.id),
+            title: item.full_name || item.email || "Unnamed user",
+            subtitle: item.email || undefined,
+            href: "/admin/users",
+            category: "Users",
+          })
+        ),
+        ...(joins ?? []).map(
+          (item): SearchResult => ({
+            id: String(item.id),
+            title: item.name || item.email || "Join request",
+            subtitle: item.major || item.status || undefined,
+            href: "/admin",
+            category: "Join Requests",
+          })
+        ),
+        ...(events ?? []).map(
+          (item): SearchResult => ({
+            id: String(item.id),
+            title: item.title,
+            subtitle: item.date || undefined,
+            href: "/admin/content",
+            category: "Events",
+          })
+        ),
+        ...(news ?? []).map(
+          (item): SearchResult => ({
+            id: String(item.id),
+            title: item.title,
+            subtitle: item.date || undefined,
+            href: item.slug ? `/news/${item.slug}` : "/admin/content",
+            category: "News",
+          })
+        ),
+        ...(library ?? []).map(
+          (item): SearchResult => ({
+            id: String(item.id),
+            title: item.title,
+            subtitle: item.category || undefined,
+            href: "/admin/content",
+            category: "Library",
+          })
+        ),
       ];
 
       setResults(nextResults);
